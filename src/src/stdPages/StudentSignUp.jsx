@@ -30,7 +30,7 @@ const StudentSignUp = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5000/students', data)
+      .post('http://https://quizly-nine.vercel.app/students', data)
       .then(() =>{
         setLoading(false);
         navigate('/');

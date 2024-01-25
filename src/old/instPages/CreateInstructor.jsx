@@ -19,7 +19,7 @@ const CreateInstructor = () => {
   const navigate = useNavigate();
   useEffect(()=>{
     axios
-      .get('http://localhost:5000/departments')
+      .get('http://https://quizly-nine.vercel.app/departments')
       .then((response) =>{ 
         setDepartments(response.data.dep)
         console.log(response.data)
@@ -37,7 +37,7 @@ const CreateInstructor = () => {
       return alert("Invalid ProFID")
     }
 
-    axios.get(`http://localhost:5000/instructors/${_id}`)
+    axios.get(`http://https://quizly-nine.vercel.app/instructors/${_id}`)
     .then((response)=>{
       if(response.data)
       return alert(`An instructor with ProfID: ${_id} already exist`)
@@ -63,7 +63,7 @@ const CreateInstructor = () => {
       password
     };
     axios
-      .post('http://localhost:5000/instructors', data)
+      .post('http://https://quizly-nine.vercel.app/instructors', data)
       .then(() =>{
         navigate('/login');
       })

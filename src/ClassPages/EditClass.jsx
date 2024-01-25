@@ -18,7 +18,7 @@ const EditClass = () => {
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true)
-    axios.get(`http://localhost:5000/classes/${id}`)
+    axios.get(`http://https://quizly-nine.vercel.app/classes/${id}`)
     .then((response)=>{
       set_id(response.data._id);
       setClassID(response.data.classID)
@@ -46,7 +46,7 @@ const EditClass = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5000/classes/${id}`, data)
+      .put(`http://https://quizly-nine.vercel.app/classes/${id}`, data)
       .then(() =>{
         setLoading(false);
         navigate('/HomeClass');

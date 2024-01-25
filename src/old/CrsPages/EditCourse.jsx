@@ -16,7 +16,7 @@ const EditCourse = () => {
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true)
-    axios.get(`http://localhost:5000/courses/${id}`)
+    axios.get(`http://https://quizly-nine.vercel.app/courses/${id}`)
     .then((response)=>{
       set_id(response.data._id);
       setName(response.data.name)
@@ -38,7 +38,7 @@ const EditCourse = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5000/courses/${id}`, data)
+      .put(`http://https://quizly-nine.vercel.app/courses/${id}`, data)
       .then(() =>{
         setLoading(false);
         navigate('/Courses');

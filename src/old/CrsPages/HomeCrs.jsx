@@ -13,7 +13,7 @@ const HomeCrs = () => {
   useEffect(()=>{
     setLoading(true);
     axios
-      .get('http://localhost:5000/courses')
+      .get('http://https://quizly-nine.vercel.app/courses')
       .then((response) =>{ 
         setCourses(response.data.course)
         console.log(response.data.course)

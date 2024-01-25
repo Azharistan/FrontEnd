@@ -22,7 +22,7 @@ function CreateClass(){
         alert('You are not logged in')
         window.location.href = ('http://localhost:5173/login')
       }else{
-        axios.post('http://localhost:5000/api/token', data)
+        axios.post('http://https://quizly-nine.vercel.app/api/token', data)
         .then((response)=>{
           if(response.data.status === 'ok'){
             setInstructor(response.data.instructor)
@@ -39,7 +39,7 @@ function CreateClass(){
   const navigate = useNavigate();
   useEffect(()=>{
     axios
-      .get('http://localhost:5000/courses')
+      .get('http://https://quizly-nine.vercel.app/courses')
       .then((response) =>{ 
         setCourse(response.data.course)
       })
@@ -58,7 +58,7 @@ function CreateClass(){
       section,
     };
     axios
-      .post('http://localhost:5000/approvals', data)
+      .post('http://https://quizly-nine.vercel.app/approvals', data)
       .then(() =>{
         navigate('/inspage');
       })

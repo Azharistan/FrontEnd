@@ -16,7 +16,7 @@ const CreateDepartment = () => {
   const navigate = useNavigate();
   const handleSaveDepartment = () =>{
 
-    axios.get(`http://localhost:5000/departments/${_id}`)
+    axios.get(`http://https://quizly-nine.vercel.app/departments/${_id}`)
     .then((response)=>{
       if(response.data)
       return alert(`A Department with department ID: ${_id} already exist`)
@@ -31,7 +31,7 @@ const CreateDepartment = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5000/departments', data)
+      .post('http://https://quizly-nine.vercel.app/departments', data)
       .then(() =>{
         setLoading(false);
         navigate('/departments');

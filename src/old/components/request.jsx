@@ -18,10 +18,10 @@ const Request = () => {
     courseID
     }
     console.log(apprv)
-    axios.post(`http://localhost:5000/api/request`, apprv)
+    axios.post(`http://https://quizly-nine.vercel.app/api/request`, apprv)
     .then((response)=>{
         console.log(response.data.ID)
-        axios.delete(`http://localhost:5000/approvals/${response.data.ID}`)
+        axios.delete(`http://https://quizly-nine.vercel.app/approvals/${response.data.ID}`)
         .then(()=>{
             console.log('deleted')
             window.location.href = ('/request')
@@ -41,7 +41,7 @@ const Request = () => {
         courseID,
         section
       }
-      axios.post('http://localhost:5000/classes', data)
+      axios.post('http://https://quizly-nine.vercel.app/classes', data)
         .then(()=>{
           console.log("Class Created")
           const apprv = {
@@ -51,10 +51,10 @@ const Request = () => {
             courseID
           }
           console.log(apprv)
-          axios.post(`http://localhost:5000/api/request`, apprv)
+          axios.post(`http://https://quizly-nine.vercel.app/api/request`, apprv)
           .then((response)=>{
             console.log(response.data.ID)
-            axios.delete(`http://localhost:5000/approvals/${response.data.ID}`)
+            axios.delete(`http://https://quizly-nine.vercel.app/approvals/${response.data.ID}`)
             .then(()=>{
               console.log('deleted')
               window.location.href = ('/request')
@@ -73,7 +73,7 @@ const Request = () => {
         section
       }
 
-      axios.post('http://localhost:5000/api/joinClass', data)
+      axios.post('http://https://quizly-nine.vercel.app/api/joinClass', data)
         .then((response)=>{
           console.log(response.status)
           const apprv = {
@@ -83,10 +83,10 @@ const Request = () => {
             courseID
           }
           console.log(apprv)
-          axios.post(`http://localhost:5000/api/request`, apprv)
+          axios.post(`http://https://quizly-nine.vercel.app/api/request`, apprv)
           .then((response)=>{
             console.log(response.data.ID)
-            axios.delete(`http://localhost:5000/approvals/${response.data.ID}`)
+            axios.delete(`http://https://quizly-nine.vercel.app/approvals/${response.data.ID}`)
             .then(()=>{
               console.log('deleted')
               window.location.href = ('/request')
@@ -102,7 +102,7 @@ const Request = () => {
 
   useEffect(()=>{
     axios
-      .get('http://localhost:5000/approvals')
+      .get('http://https://quizly-nine.vercel.app/approvals')
       .then((response) =>{ 
         console.log(response.data)
         setApproval(response.data.approvals)

@@ -11,7 +11,7 @@ const DeleteClass = () => {
   const handleDeleteClass=()=>{
     setLoading(true);
     axios
-      .delete(`http://localhost:5000/classes/${id}`)
+      .delete(`http://https://quizly-nine.vercel.app/classes/${id}`)
       .then(()=>{
         setLoading(false);
         navigate('/classes');

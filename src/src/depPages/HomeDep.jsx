@@ -13,7 +13,7 @@ const HomeDep = () => {
   useEffect(()=>{
     setLoading(true);
     axios
-      .get('http://localhost:5000/departments')
+      .get('http://https://quizly-nine.vercel.app/departments')
       .then((response) =>{ 
         setDepartments(response.data.dep)
         setLoading(false);

@@ -29,7 +29,7 @@ const CreateQuiz = () => {
       alert('You are not logged in');
       window.location.href = 'http://localhost:5173/login';
     } else {
-      axios.post('http://localhost:5000/api/token', { token })
+      axios.post('http://https://quizly-nine.vercel.app/api/token', { token })
         .then((response) => {
           if (response.data.status === 'ok') {
             setInstructor(response.data.instructor);
@@ -68,7 +68,7 @@ const CreateQuiz = () => {
   };
 
   const handleSubmit = () => {
-    axios.post('http://localhost:5000/questions', questionData)
+    axios.post('http://https://quizly-nine.vercel.app/questions', questionData)
       .then((response) => {
         setQuestionStats([...questionStats, response.data]);
         setQuestionData({
@@ -103,13 +103,13 @@ const CreateQuiz = () => {
 
     let qID
 
-    axios.post('http://localhost:5000/quizes', data)
+    axios.post('http://https://quizly-nine.vercel.app/quizes', data)
       .then((response) => {
         console.log(response.data);
         qID = response.data._id
         console.log(qID)
       }).then(()=>{
-        axios.get(`http://localhost:5000/classes/${selectClass._id}`)
+        axios.get(`http://https://quizly-nine.vercel.app/classes/${selectClass._id}`)
         .then((response)=>{
         console.log(response.data)
         console.log(qID)
@@ -123,7 +123,7 @@ const CreateQuiz = () => {
           stdList: response.data.stdList,
           quizList: quizList
         }
-        axios.put(`http://localhost:5000/classes/${selectClass._id}`, data)
+        axios.put(`http://https://quizly-nine.vercel.app/classes/${selectClass._id}`, data)
         .then((res)=>{
           console.log(res)
         })

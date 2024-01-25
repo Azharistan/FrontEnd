@@ -16,7 +16,7 @@ const InsClasses = () => {
             alert('you are not logged in')
             window.location.href = ('http://localhost:5173/login')
         }else{
-            axios.post('http://localhost:5000/api/token', data)
+            axios.post('http://https://quizly-nine.vercel.app/api/token', data)
             .then((response)=>{
                 if(response.data.status === 'ok'){
                     setInstructor(response.data.instructor)
@@ -27,7 +27,7 @@ const InsClasses = () => {
                   _id:instructor._id
                 }
                 axios
-                .post('http://localhost:5000/classes/getByInstructor', data)
+                .post('http://https://quizly-nine.vercel.app/classes/getByInstructor', data)
                 .then((response) =>{
                   console.log(response.data)
                   fetchClassDetails(response.data.class1)
@@ -49,7 +49,7 @@ const InsClasses = () => {
 
   const fetchClassDetails = (classs)=>{
     const promises = classs.map((Class) => {
-      const coursePromise = axios.get(`http://localhost:5000/courses/${Class.courseID}`)
+      const coursePromise = axios.get(`http://https://quizly-nine.vercel.app/courses/${Class.courseID}`)
       return Promise.all([coursePromise])
       .then((responses)=>{
         const [courseResponse] = responses

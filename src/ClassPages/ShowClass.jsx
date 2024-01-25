@@ -12,7 +12,7 @@ const ShowClass = () => {
 
   useEffect(()=>{
     axios
-      .get(`http://localhost:5000/classes/${id}`)
+      .get(`http://https://quizly-nine.vercel.app/classes/${id}`)
       .then((response)=>{
         setClasses(response.data);
         console.log('this',response.data)
@@ -23,11 +23,11 @@ const ShowClass = () => {
         console.log('this',error);
       });
     }, [])
-    axios.get(`http://localhost:5000/instructors/${instructor}`)
+    axios.get(`http://https://quizly-nine.vercel.app/instructors/${instructor}`)
     .then((res)=>{
       setInstructor(res.data.name)
     })
-    axios.get(`http://localhost:5000/courses/${course}`)
+    axios.get(`http://https://quizly-nine.vercel.app/courses/${course}`)
     .then((res)=>{
       setCourse(res.data.name)
     })

@@ -14,7 +14,7 @@ const InsPage=() => {
             alert('You are not logged in')
             window.location.href = ('http://localhost:5173/login')
         }else{
-            axios.post('http://localhost:5000/api/token', data)
+            axios.post('http://https://quizly-nine.vercel.app/api/token', data)
             .then((response)=>{
                 if(response.data.status === 'ok'){
                     setProf(response.data.instructor)

@@ -31,7 +31,7 @@ const CreateQuiz = () => {
       alert('You are not logged in');
       window.location.href = 'http://localhost:5173/login';
     } else {
-      axios.post('http://localhost:5000/api/token', { token })
+      axios.post('http://https://quizly-nine.vercel.app/api/token', { token })
         .then((response) => {
           if (response.data.status === 'ok') {
             setInstructor(response.data.instructor);
@@ -70,7 +70,7 @@ const CreateQuiz = () => {
   };
 
   const handleSubmit = () => {
-    axios.post('http://localhost:5000/questions', questionData)
+    axios.post('http://https://quizly-nine.vercel.app/questions', questionData)
       .then((response) => {
         setQuestionStats([...questionStats, response.data]);
         setQuestionData({
@@ -103,7 +103,7 @@ const CreateQuiz = () => {
       questions: updatedQuestions
     };
 
-    axios.post('http://localhost:5000/quizes', data)
+    axios.post('http://https://quizly-nine.vercel.app/quizes', data)
       .then((response) => {
         console.log(response.data);
       })

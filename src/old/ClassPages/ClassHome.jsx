@@ -14,7 +14,7 @@ const HomeClass = () => {
   useEffect(()=>{
     setLoading(true);
     axios
-      .get('http://localhost:5000/classes')
+      .get('http://https://quizly-nine.vercel.app/classes')
       .then((response) =>{ 
         console.log(response.data)
         setClasss(response.data.class1)
