@@ -27,7 +27,7 @@ const InsClasses = () => {
                   _id:instructor._id
                 }
                 axios
-                .post('http://https://quizly-nine.vercel.app/classes/getByInstructor', data)
+                .post('https://quizly-nine.vercel.app/classes/getByInstructor', data)
                 .then((response) =>{
                   console.log(response.data)
                   fetchClassDetails(response.data.class1)
@@ -49,7 +49,7 @@ const InsClasses = () => {
 
   const fetchClassDetails = (classs)=>{
     const promises = classs.map((Class) => {
-      const coursePromise = axios.get(`http://https://quizly-nine.vercel.app/courses/${Class.courseID}`)
+      const coursePromise = axios.get(`https://quizly-nine.vercel.app/courses/${Class.courseID}`)
       return Promise.all([coursePromise])
       .then((responses)=>{
         const [courseResponse] = responses

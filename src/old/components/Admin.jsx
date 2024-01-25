@@ -11,7 +11,7 @@ const Admin = () => {
 
     const Navigate = useNavigate()
     const handleLogin = () =>{
-        axios.get(`http://https://quizly-nine.vercel.app/admins/${id}`)
+        axios.get(`https://quizly-nine.vercel.app/admins/${id}`)
             .then((response)=>{
                 if((pass)===response.data.pass)
                     {Navigate('/create')}

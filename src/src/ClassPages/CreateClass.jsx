@@ -39,7 +39,7 @@ function CreateClass(){
   const navigate = useNavigate();
   useEffect(()=>{
     axios
-      .get('http://https://quizly-nine.vercel.app/courses')
+      .get('https://quizly-nine.vercel.app/courses')
       .then((response) =>{ 
         setCourse(response.data.course)
       })
@@ -58,7 +58,7 @@ function CreateClass(){
       section,
     };
     axios
-      .post('http://https://quizly-nine.vercel.app/approvals', data)
+      .post('https://quizly-nine.vercel.app/approvals', data)
       .then(() =>{
         navigate('/inspage');
       })

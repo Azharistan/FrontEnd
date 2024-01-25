@@ -26,7 +26,7 @@ const Quiz = () => {
         const data = {
           _id: instructor._id
         }
-        axios.post('http://https://quizly-nine.vercel.app/classes/getByInstructor', data)
+        axios.post('https://quizly-nine.vercel.app/classes/getByInstructor', data)
         .then((res)=>{
           console.log("Classes = ", res.data.class1)
           setClasses(res.data.class1)
@@ -45,7 +45,7 @@ const Quiz = () => {
         if (Class.quizList.length !== 0) {
           Class.quizList.forEach((q) => {
             promises.push(
-              axios.get(`http://https://quizly-nine.vercel.app/quizes/${q}`)
+              axios.get(`https://quizly-nine.vercel.app/quizes/${q}`)
                 .then((response) => {
                   var quizNo = 8;
                   for(let i=0; i<Class.quizList.length; i++) {
@@ -78,7 +78,7 @@ const Quiz = () => {
 
   const publishQuiz = (quiz)=>{
     if(quiz){
-      axios.post(`http://https://quizly-nine.vercel.app/quizes/publishQuiz/${quiz}`)
+      axios.post(`https://quizly-nine.vercel.app/quizes/publishQuiz/${quiz}`)
       .then((response)=>{
         console.log(response.data)
         window.location.href = (`https://quizly-cust.netlify.app/Qrpage/${response.data.quiz._id}`);

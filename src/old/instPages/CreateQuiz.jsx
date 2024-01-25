@@ -68,7 +68,7 @@ const CreateQuiz = () => {
   };
 
   const handleSubmit = () => {
-    axios.post('http://https://quizly-nine.vercel.app/questions', questionData)
+    axios.post('https://quizly-nine.vercel.app/questions', questionData)
       .then((response) => {
         setQuestionStats([...questionStats, response.data]);
         setQuestionData({
@@ -103,13 +103,13 @@ const CreateQuiz = () => {
 
     let qID
 
-    axios.post('http://https://quizly-nine.vercel.app/quizes', data)
+    axios.post('https://quizly-nine.vercel.app/quizes', data)
       .then((response) => {
         console.log(response.data);
         qID = response.data._id
         console.log(qID)
       }).then(()=>{
-        axios.get(`http://https://quizly-nine.vercel.app/classes/${selectClass._id}`)
+        axios.get(`https://quizly-nine.vercel.app/classes/${selectClass._id}`)
         .then((response)=>{
         console.log(response.data)
         console.log(qID)
@@ -123,7 +123,7 @@ const CreateQuiz = () => {
           stdList: response.data.stdList,
           quizList: quizList
         }
-        axios.put(`http://https://quizly-nine.vercel.app/classes/${selectClass._id}`, data)
+        axios.put(`https://quizly-nine.vercel.app/classes/${selectClass._id}`, data)
         .then((res)=>{
           console.log(res)
         })

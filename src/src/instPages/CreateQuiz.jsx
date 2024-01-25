@@ -70,7 +70,7 @@ const CreateQuiz = () => {
   };
 
   const handleSubmit = () => {
-    axios.post('http://https://quizly-nine.vercel.app/questions', questionData)
+    axios.post('https://quizly-nine.vercel.app/questions', questionData)
       .then((response) => {
         setQuestionStats([...questionStats, response.data]);
         setQuestionData({
@@ -103,7 +103,7 @@ const CreateQuiz = () => {
       questions: updatedQuestions
     };
 
-    axios.post('http://https://quizly-nine.vercel.app/quizes', data)
+    axios.post('https://quizly-nine.vercel.app/quizes', data)
       .then((response) => {
         console.log(response.data);
       })

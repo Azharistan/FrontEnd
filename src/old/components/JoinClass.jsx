@@ -35,7 +35,7 @@ const JoinClass = () => {
   
   useEffect(()=>{
     axios
-      .get('http://https://quizly-nine.vercel.app/classes')
+      .get('https://quizly-nine.vercel.app/classes')
       .then((response) =>{ 
         fetchClassDetails(response.data.class1)
       })
@@ -46,8 +46,8 @@ const JoinClass = () => {
 
   const fetchClassDetails = (classs)=>{
     const promises = classs.map((Class) => {
-      const coursePromise = axios.get(`http://https://quizly-nine.vercel.app/courses/${Class.courseID}`)
-      const instructorPromise = axios.get(`http://https://quizly-nine.vercel.app/instructors/${Class.instructor}`)
+      const coursePromise = axios.get(`https://quizly-nine.vercel.app/courses/${Class.courseID}`)
+      const instructorPromise = axios.get(`https://quizly-nine.vercel.app/instructors/${Class.instructor}`)
       return Promise.all([coursePromise,instructorPromise])
       .then((responses)=>{
         const [courseResponse, instructorResponse] = responses
@@ -93,7 +93,7 @@ useEffect(()=>{
       class_ID
     )
 {
-  axios.post(`http://https://quizly-nine.vercel.app/approvals`, data)
+  axios.post(`https://quizly-nine.vercel.app/approvals`, data)
     .then((response)=>{
       if(response.status===201){
         const newclass = {
@@ -102,7 +102,7 @@ useEffect(()=>{
           classID: class_ID._id
         }
         std.classes.push(newclass)
-        axios.put(`http://https://quizly-nine.vercel.app/students/${std._id}`, std)
+        axios.put(`https://quizly-nine.vercel.app/students/${std._id}`, std)
           .then((res)=>{
             localStorage.removeItem('token')
             localStorage.setItem('token', res.data.token)

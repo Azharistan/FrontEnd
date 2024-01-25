@@ -12,7 +12,7 @@ const ShowCourses = () => {
   useEffect(()=>{
     setLoading(true)
     axios
-      .get(`http://https://quizly-nine.vercel.app/courses/${id}`)
+      .get(`https://quizly-nine.vercel.app/courses/${id}`)
       .then((response)=>{
         setCourses(response.data);
         console.log('this',response.data)

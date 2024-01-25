@@ -18,7 +18,7 @@ const CreateCourse = () => {
   const navigate = useNavigate();
   useEffect(()=>{
     axios
-      .get('http://https://quizly-nine.vercel.app/departments')
+      .get('https://quizly-nine.vercel.app/departments')
       .then((response) =>{ 
         setDepartments(response.data.dep)
         console.log(response.data)
@@ -32,7 +32,7 @@ const CreateCourse = () => {
   },[])
   const handleSaveCourse = () =>{
 
-    axios.get(`http://https://quizly-nine.vercel.app/courses/${_id}`)
+    axios.get(`https://quizly-nine.vercel.app/courses/${_id}`)
     .then((response)=>{
       if(response.data){
         return alert(`A Course with Course ID: ${_id} already exist`)
@@ -43,7 +43,7 @@ const CreateCourse = () => {
     })
       
 
-    axios.get(`http://https://quizly-nine.vercel.app/departments/${depID}`)
+    axios.get(`https://quizly-nine.vercel.app/departments/${depID}`)
     .then().catch(()=>{
       return alert(`No department Found with Department ID : ${depID}`)
     })
@@ -56,7 +56,7 @@ const CreateCourse = () => {
     };
     setLoading(true);
     axios
-      .post('http://https://quizly-nine.vercel.app/courses', data)
+      .post('https://quizly-nine.vercel.app/courses', data)
       .then(() =>{
         setLoading(false);
         navigate('/courses');

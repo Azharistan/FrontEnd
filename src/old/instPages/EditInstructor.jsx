@@ -42,7 +42,7 @@ const EditInstuctor = () => {
       department
     };
     axios
-    .put(`http://https://quizly-nine.vercel.app/instructors/${_id}`, data)
+    .put(`https://quizly-nine.vercel.app/instructors/${_id}`, data)
     .then((response) =>{
       if(response.data.token){
         token = response.data.token

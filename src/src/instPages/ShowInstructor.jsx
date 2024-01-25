@@ -23,7 +23,7 @@ const ShowInstuctor = () => {
           return(response.data.instructor)
         }
       }).then((res)=>{
-        axios.get(`http://https://quizly-nine.vercel.app/departments/${res.department}`)
+        axios.get(`https://quizly-nine.vercel.app/departments/${res.department}`)
         .then((response) => {    
             setDep(response.data.name)
           })

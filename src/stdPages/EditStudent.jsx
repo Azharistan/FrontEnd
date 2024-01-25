@@ -42,7 +42,7 @@ const EditStudent = () => {
       semester
     };
       axios
-      .put(`http://https://quizly-nine.vercel.app/students/${_id}`, data)
+      .put(`https://quizly-nine.vercel.app/students/${_id}`, data)
       .then((response)=>{
         if(response.data.token){
         token = response.data.token

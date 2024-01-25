@@ -11,7 +11,7 @@ const DeleteDepartment = () => {
   const handleDeleteDepartment=()=>{
     setLoading(true);
     axios
-      .delete(`http://https://quizly-nine.vercel.app/departments/${id}`)
+      .delete(`https://quizly-nine.vercel.app/departments/${id}`)
       .then(()=>{
         setLoading(false);
         navigate('/departments');

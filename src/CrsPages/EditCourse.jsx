@@ -15,7 +15,7 @@ const EditCourse = () => {
   const [loading, setLoading] = useState(false);
   const {id} = useParams()
   useEffect (()=>{
-    axios.get(`http://https://quizly-nine.vercel.app/courses/${id}`)
+    axios.get(`https://quizly-nine.vercel.app/courses/${id}`)
     .then((response)=>{
       console.log(response.data)
       setCourse(response.data)
@@ -88,7 +88,7 @@ const EditCourse = () => {
   const handleEditCourse = () => {
     setLoading(true);
     console.log(course)
-    axios.put(`http://https://quizly-nine.vercel.app/courses/${course._id}`, course)
+    axios.put(`https://quizly-nine.vercel.app/courses/${course._id}`, course)
   };
 
   return (

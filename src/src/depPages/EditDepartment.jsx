@@ -16,7 +16,7 @@ const EditDepartment = () => {
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true)
-    axios.get(`http://https://quizly-nine.vercel.app/departments/${id}`)
+    axios.get(`https://quizly-nine.vercel.app/departments/${id}`)
     .then((response)=>{
       set_id(response.data._id);
       setName(response.data.name)
@@ -44,7 +44,7 @@ const EditDepartment = () => {
     };
     setLoading(true);
     axios
-      .put(`http://https://quizly-nine.vercel.app/departments/${id}`, data)
+      .put(`https://quizly-nine.vercel.app/departments/${id}`, data)
       .then(() =>{
         setLoading(false);
         navigate('/HomeDep');

@@ -11,7 +11,7 @@ const DeleteStudent = () => {
   const handleDeleteStudent=()=>{
     setLoading(true);
     axios
-      .delete(`http://https://quizly-nine.vercel.app/students/${id}`)
+      .delete(`https://quizly-nine.vercel.app/students/${id}`)
       .then(()=>{
         setLoading(false);
         navigate('/students');

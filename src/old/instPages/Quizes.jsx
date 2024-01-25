@@ -23,7 +23,7 @@ const Quiz = () => {
                 const data = {
                     _id: response._id
                 }
-                axios.post('http://https://quizly-nine.vercel.app/classes/getByInstructor', data)
+                axios.post('https://quizly-nine.vercel.app/classes/getByInstructor', data)
                 .then((res)=>{
                     console.log(res)
                 })
