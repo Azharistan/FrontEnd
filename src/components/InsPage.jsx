@@ -10,6 +10,7 @@ const InsPage=() => {
         token
     }
     useEffect(()=>{
+        console.log('inside use effect')
         if(!token){
             alert('You are not logged in')
             window.location.href = ('https://quizly-cust.netlify.app/login')
