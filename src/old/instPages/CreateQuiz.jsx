@@ -29,7 +29,7 @@ const CreateQuiz = () => {
       alert('You are not logged in');
       window.location.href = 'https://quizly-cust.netlify.app/login';
     } else {
-      axios.post('http://https://quizly-nine.vercel.app/api/token', { token })
+      axios.post('https://quizly-nine.vercel.app/api/token', { token })
         .then((response) => {
           if (response.data.status === 'ok') {
             setInstructor(response.data.instructor);

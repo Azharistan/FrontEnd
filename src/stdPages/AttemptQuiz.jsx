@@ -37,7 +37,7 @@ const shuffleArray = (array) => {
         window.location.href = 'https://quizly-cust.netlify.app/';
       } else {
         axios
-          .post('http://https://quizly-nine.vercel.app/api/token', data)
+          .post('https://quizly-nine.vercel.app/api/token', data)
           .then((response) => {
             if (response.data.status === 'ok') {
               setStd(response.data.student);

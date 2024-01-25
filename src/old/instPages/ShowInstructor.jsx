@@ -16,7 +16,7 @@ const ShowInstuctor = () => {
       alert("You are not logged in")
       window.location.href= ('https://quizly-cust.netlify.app/login')
     }else{
-      axios.post('http://https://quizly-nine.vercel.app/api/token', data)
+      axios.post('https://quizly-nine.vercel.app/api/token', data)
       .then((response)=>{
         if(response.data.status === 'ok'){
           setinstructors(response.data.instructor)

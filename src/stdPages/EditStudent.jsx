@@ -19,7 +19,7 @@ const EditStudent = () => {
 
   const navigate = useNavigate();
   useEffect(()=>{
-    axios.post(`http://https://quizly-nine.vercel.app/api/token`, tt)
+    axios.post(`https://quizly-nine.vercel.app/api/token`, tt)
     .then((response)=>{
       set_id(response.data.student._id);
       setName(response.data.student.name)
@@ -53,7 +53,7 @@ const EditStudent = () => {
       }else{
           alert('Something went wrong please try again')
         }
-        axios.post(`http://https://quizly-nine.vercel.app/api/token`, tt)
+        axios.post(`https://quizly-nine.vercel.app/api/token`, tt)
         .then((res)=>{
           set_id(res.data.student._id);
           setName(res.data.student.name)
