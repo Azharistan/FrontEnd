@@ -14,6 +14,7 @@ const InsPage=() => {
             alert('You are not logged in')
             window.location.href = ('https://quizly-cust.netlify.app/login')
         }else{
+            console.log('here')
             axios.post('https://quizly-nine.vercel.app/api/token', data)
             .then((response)=>{
                 if(response.data.status === 'ok'){
