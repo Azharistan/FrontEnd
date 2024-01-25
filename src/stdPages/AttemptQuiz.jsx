@@ -34,7 +34,7 @@ const shuffleArray = (array) => {
     useEffect(() => {
       if (!token) {
         alert('You are not logged in');
-        window.location.href = 'http://localhost:5173/';
+        window.location.href = 'https://quizly-cust.netlify.app/';
       } else {
         axios
           .post('http://https://quizly-nine.vercel.app/api/token', data)

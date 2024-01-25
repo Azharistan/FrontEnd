@@ -10,7 +10,7 @@ const Quiz = () => {
     useEffect(()=>{
         if(!token){
             alert('You are not logged in')
-            window.location.href = ('http://localhost:5173/login')
+            window.location.href = ('https://quizly-cust.netlify.app/login')
         }else{
             axios.post('http://https://quizly-nine.vercel.app/api/token', data)
             .then((response)=>{
