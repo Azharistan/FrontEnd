@@ -20,6 +20,7 @@ const InsPage=() => {
                     setProf(response.data.instructor)
                 }
             }).catch((error)=>{
+                console.log('happy')
                 console.log(error)
             })
         }
