@@ -31,10 +31,15 @@ const Create=() => {
     <div>
     {admin? (
         <div>
+        <h1>Welcome {admin._id}</h1>
+
         <div className="StuContainer">
+
         <a href="/request"  className="Stubutton">
             Approvals
         </a>
+        </div>
+        <div className="StuContainer">
         <a href="/students"  className="Stubutton">
             Student
         </a>
