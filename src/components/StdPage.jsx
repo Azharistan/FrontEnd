@@ -55,7 +55,7 @@ const StdPage=() => {
         <Link to = {std? `/JoinedClasses`: '/StdPage'} className="Stubutton">      
             Classes
         </Link>
-        <a href="/login" className="InsButton" onClick={handleLogout}>
+        <a href="/" className="InsButton" onClick={handleLogout}>
             logout
         </a>
         </div>

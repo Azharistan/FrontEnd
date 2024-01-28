@@ -34,48 +34,48 @@ const Create=() => {
 
   return (
     <div>
-    {admin? (
-        <div>
-        <h1>Welcome {admin._id}</h1>
+        {admin? (
+            <div>
+                <h1>Welcome {admin._id}</h1>
 
-        <div className="StuContainer">
+                <div className="StuContainer">
 
-        <a href="/request"  className="Stubutton">
-            Approvals
-        </a>
-        </div>
-        <div className="StuContainer">
-        <a href="/students"  className="Stubutton">
-            Student
-        </a>
-        </div>
-        <div className="InsContainer">
-        <a href="/Instructors" className="InsButton">
-            Instructor
-        </a>
-        </div>
-        <div className="InsContainer">
-        <a href="/Departments" className="InsButton">
-            Department
-        </a>
-        </div>
-        <div className="InsContainer">
-        <a href="/Courses" className="InsButton">
-            Course
-        </a>
-        </div>
-        <div className="InsContainer">
-        <a href="/Classes" className="InsButton">
-            Class
-        </a>
-        </div>
-        <a href="/login" className="InsButton" onClick={handleLogout}>
-            logout
-        </a>
-        
-        
-        </div>
-    ):(<><h1>you are not allowed here</h1></>)}
+                    <a href="/request"  className="Stubutton">
+                        Approvals
+                    </a>
+                </div>
+                <div className="StuContainer">
+                    <a href="/students"  className="Stubutton">
+                        Student
+                    </a>
+                </div>
+                <div className="InsContainer">
+                    <a href="/Instructors" className="InsButton">
+                        Instructor
+                    </a>
+                </div>
+                <div className="InsContainer">
+                    <a href="/Departments" className="InsButton">
+                        Department
+                    </a>
+                </div>
+                <div className="InsContainer">
+                    <a href="/Courses" className="InsButton">
+                        Course
+                    </a>
+                </div>
+                <div className="InsContainer">
+                    <a href="/Classes" className="InsButton">
+                        Class
+                    </a>
+                </div>
+                <div className="InsContainer">
+                    <a href="/" className="InsButton" onClick={handleLogout}>
+                        logout
+                    </a>
+                </div>
+            </div>
+        ):(<><h1>you are not allowed here</h1></>)}
     </div>
   )
 }
