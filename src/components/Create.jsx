@@ -27,6 +27,11 @@ const Create=() => {
         }
     },[])
 
+    function handleLogout (){
+        localStorage.removeItem('token')
+        window.location.href = ('/')
+    }
+
   return (
     <div>
     {admin? (
@@ -64,6 +69,9 @@ const Create=() => {
             Class
         </a>
         </div>
+        <a href="/login" className="InsButton" onClick={handleLogout}>
+            logout
+        </a>
         
         
         </div>

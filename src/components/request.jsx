@@ -10,6 +10,34 @@ const Request = () => {
   var courseID
   var to;
 
+  const [user, setUser] = useState()
+    const token = localStorage.getItem('token')
+    const data = {
+        token
+    }
+    useEffect(()=>{
+        console.log('inside use effect')
+        if(!token){
+            alert('You are not logged in')
+            window.location.href = ('/')
+        }else{
+            console.log('here')
+            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            .then((response)=>{
+                if(response.data.status === 'ok'){
+                  if(response.data.admin)
+                    setUser(response.data.admin)
+                  else if(response.data.instructor)
+                    setUser(response.data.instructor)
+                  else console.log("no user")
+                }
+            }).catch((error)=>{
+                console.log('happy')
+                console.log(error)
+            })
+        }
+    },[])
+
   const handleDelete = () =>{
     const apprv = {
     from,
@@ -98,7 +126,7 @@ const Request = () => {
   useEffect(()=>{
     console.log("in loop")
     axios
-      .get('https://quizly-nine.vercel.app/approvals')
+      .get(`https://quizly-nine.vercel.app/approvals/byuser/${user._id}`)
       .then((response) =>{ 
         console.log(response.data)
         setApproval(response.data.approvals)
