@@ -18,7 +18,7 @@ const QRPage = () => {
                 alert("It seems you have already attempted this quiz before.")
             else if(response.statusText === 'token expired')
                 alert("Sorry the time to attempt this quiz is over.")
-            else if( response.statusText==='OK'){
+            else if( response.status==200){
                 setLink(`/attempt/${id}`)
                 console.log("link")
                 setloading(false)
@@ -26,20 +26,19 @@ const QRPage = () => {
         }
         )
     },[])
-  return (
-    <div>
-    {
-        loading? null:
-     (  
+    return (
         <div>
-            <QRCodeSVG height={'100%'} value={link}/>
-            <p>Or Click on the following link : <a href={link}>Link</a></p>
-        </div> 
-    )
-    }
-        
-    </div>
-  )
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div>
+              <QRCodeSVG height={'100%'} value={link} />
+              <p>Or Click on the following link: <a href={link}>Link</a></p>
+            </div>
+          )}
+        </div>
+      );
+      
 }
 
 export default QRPage
