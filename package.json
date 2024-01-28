@@ -9,7 +9,7 @@
       "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
       "preview": "vite preview"
     },
-    "homepage": "https://quizly-cust.netlify.app",
+    "homepage": "",
     "dependencies": {
       "@fortawesome/free-solid-svg-icons": "^6.5.1",
       "@fortawesome/react-fontawesome": "^0.2.0",

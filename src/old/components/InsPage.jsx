@@ -12,7 +12,7 @@ const InsPage=() => {
     useEffect(()=>{
         if(!token){
             alert('You are not logged in')
-            window.location.href = ('https://quizly-cust.netlify.app/')
+            window.location.href = ('/')
         }else{
             axios.post('https://quizly-nine.vercel.app/api/token', data)
             .then((response)=>{
@@ -27,7 +27,7 @@ const InsPage=() => {
     
     function handleLogout(){
         localStorage.removeItem('token')
-        window.location.href = ('https://quizly-cust.netlify.app/')
+        window.location.href = ('/')
     }
 
   return (

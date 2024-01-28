@@ -16,7 +16,7 @@ const SignIn = () => {
             axios.get(`https://quizly-nine.vercel.app/students/${id}`)
             .then((response)=>{
                 if(objectHash.MD5(pass)==response.data.password)
-                {Navigate('https://quizly-cust.netlify.app/students')}
+                {Navigate('/students')}
                 else{
                     alert('ID or Password may be incorrect')
                 }
@@ -29,7 +29,7 @@ const SignIn = () => {
             axios.get(`https://quizly-nine.vercel.app/instructors/${id}`)
             .then((response)=>{
                 if(objectHash.MD5(pass)==response.data.password)
-                {Navigate('https://quizly-cust.netlify.app/instructors')}
+                {Navigate('/instructors')}
                 else{
                     alert('ID or Password may be incorrect')
                 }

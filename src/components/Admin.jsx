@@ -14,7 +14,7 @@ const Admin = () => {
         axios.get(`https://quizly-nine.vercel.app/admins/${id}`)
             .then((response)=>{
                 if((pass)===response.data.pass)
-                    {Navigate('https://quizly-cust.netlify.app/create')}
+                    {Navigate('/create')}
                 else{
                     alert('ID or Password may be incorrect')
                 }

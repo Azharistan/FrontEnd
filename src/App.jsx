@@ -53,7 +53,6 @@ import JoinClass from "./components/JoinClass.jsx";
 import Admin from "./components/Admin.jsx";
 import Create from "./components/Create";
 
-import Testlogin from "./components/testlogin.jsx";
 
 import Request from "./components/request.jsx";
 
@@ -83,7 +82,6 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<LogIn />}/>
-        <Route exact path="/lol" element = {<Testlogin />} />
         
         
         <Route exact path="/instructors" element = {<HomeIns />} />

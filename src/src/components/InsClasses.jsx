@@ -15,7 +15,7 @@ const InsClasses = () => {
         function getInstructor(){
           if(!token){          
             alert('you are not logged in')
-            window.location.href = ('https://quizly-cust.netlify.app/login')
+            window.location.href = ('/')
         }else{
             axios.post('https://quizly-nine.vercel.app/api/token', data)
             .then((response)=>{

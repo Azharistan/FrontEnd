@@ -12,18 +12,17 @@ function LogIn(){
     const [loading, setLoading] = useState(false);
     const [password, setPass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-const Navigate = useNavigate()
+    const Navigate = useNavigate()
 
-useEffect(()=>{
-    setLoading(true)
-    const token = localStorage.getItem('token')
-    if(token){
-        
-        const data = {
-            token
-        }
+    useEffect(()=>{
+        setLoading(true)
+        const token = localStorage.getItem('token')
+        if(token){    
+            const data = {
+                token
+            }
 
-        axios.post('https://quizly-nine.vercel.app/api/token', data)
+            axios.post('http://localhost:5000/api/token', data)
             .then((response)=>{
                 if(response.data.instructor){
                     setLoading(false)
@@ -32,6 +31,10 @@ useEffect(()=>{
                 else if(response.data.student){
                     setLoading(false)
                     window.location.href = ("/stdpage")
+                }
+                else if(response.data.admin){
+                    setLoading(false)
+                    window.location.href = ("/create")
                 }
             }).catch((error)=>{
                 setLoading(false)
@@ -52,7 +55,7 @@ async function handleLogin(event){
         _id,
         password
     }
-axios.post('https://quizly-nine.vercel.app/api/login', body)
+axios.post('http://localhost:5000/api/login', body)
 .then((response)=>{
     if(response.data.status === 'ok'){
         localStorage.setItem('token', response.data.token)

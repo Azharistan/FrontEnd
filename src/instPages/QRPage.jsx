@@ -19,7 +19,7 @@ const QRPage = () => {
             else if(response.statusText === 'token expired')
                 alert("Sorry the time to attempt this quiz is over.")
             else if( response.statusText==='OK'){
-                setLink(`https://quizly-cust.netlify.app/attempt/${id}`)
+                setLink(`/attempt/${id}`)
                 console.log("link")
                 setloading(false)
             }

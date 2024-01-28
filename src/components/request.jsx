@@ -24,7 +24,7 @@ const Request = () => {
         axios.delete(`https://quizly-nine.vercel.app/approvals/${response.data.ID}`)
         .then(()=>{
             console.log('deleted')
-            window.location.href = ('https://quizly-cust.netlify.app/request')
+            window.location.href = ('/request')
         }).catch((error)=>{
             console.log(error)
         })
@@ -84,7 +84,7 @@ const Request = () => {
             axios.delete(`https://quizly-nine.vercel.app/approvals/${response.data.ID}`)
             .then(()=>{
               console.log('deleted')
-              window.location.href = ('https://quizly-cust.netlify.app/request')
+              window.location.href = ('/request')
             }).catch((error)=>{
               console.log(error)
             })

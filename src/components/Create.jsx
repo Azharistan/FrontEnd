@@ -1,9 +1,40 @@
 import "./style/Home.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
  
 const Create=() => {
+    const [admin, setAdmin] = useState()
+    const token = localStorage.getItem('token')
+    const data = {
+        token
+    }
+    useEffect(()=>{
+        console.log('inside use effect')
+        if(!token){
+            alert('You are not logged in')
+            window.location.href = ('/')
+        }else{
+            console.log('here')
+            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            .then((response)=>{
+                if(response.data.status === 'ok'){
+                    setAdmin(response.data.admin)
+                }
+            }).catch((error)=>{
+                console.log('happy')
+                console.log(error)
+            })
+        }
+    },[])
+
   return (
     <div>
+    {admin? (
+        <div>
         <div className="StuContainer">
+        <a href="/request"  className="Stubutton">
+            Approvals
+        </a>
         <a href="/students"  className="Stubutton">
             Student
         </a>
@@ -28,10 +59,10 @@ const Create=() => {
             Class
         </a>
         </div>
-        <div>
         
         
         </div>
+    ):(<><h1>you are not allowed here</h1></>)}
     </div>
   )
 }

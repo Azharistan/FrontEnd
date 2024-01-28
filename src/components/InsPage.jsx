@@ -13,7 +13,7 @@ const InsPage=() => {
         console.log('inside use effect')
         if(!token){
             alert('You are not logged in')
-            window.location.href = ('https://quizly-cust.netlify.app/login')
+            window.location.href = ('/')
         }else{
             console.log('here')
             axios.post('https://quizly-nine.vercel.app/api/token', data)
@@ -30,26 +30,26 @@ const InsPage=() => {
     
     function handleLogout(){
         localStorage.removeItem('token')
-        window.location.href = ('https://quizly-cust.netlify.app/')
+        window.location.href = ('/')
     }
 
   return (
     <div className="StuContainer">
         <h1>Welcome {prof? prof.name:''}</h1>
-        <Link to = {prof? `https://quizly-cust.netlify.app/instructors/info`: 'https://quizly-cust.netlify.app/insPage'} className="Stubutton">                         
+        <Link to = {prof? `/instructors/info`: '/insPage'} className="Stubutton">                         
                 View profile
             </Link>
 
-            <Link to = {prof? `https://quizly-cust.netlify.app/instructors/edit`: 'https://quizly-cust.netlify.app/insPage'} className="Stubutton">                         
+            <Link to = {prof? `/instructors/edit`: '/insPage'} className="Stubutton">                         
                 Edit Profile
             </Link>
-            <Link to = {prof? `https://quizly-cust.netlify.app/classes/create`: 'https://quizly-cust.netlify.app/insPage'} className="Stubutton">                         
+            <Link to = {prof? `/classes/create`: '/insPage'} className="Stubutton">                         
             Create Class
             </Link>
-            <Link to = {prof? `https://quizly-cust.netlify.app/insclasses`: 'https://quizly-cust.netlify.app/insPage'} className="Stubutton">                         
+            <Link to = {prof? `/insclasses`: '/insPage'} className="Stubutton">                         
             Classes
             </Link>
-            <Link to = {prof? `https://quizly-cust.netlify.app/QuizList`: 'https://quizly-cust.netlify.app/insPage'} className="Stubutton">                         
+            <Link to = {prof? `/QuizList`: '/insPage'} className="Stubutton">                         
             Quizes
             </Link>
             

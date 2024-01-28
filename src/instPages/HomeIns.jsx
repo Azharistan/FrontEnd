@@ -1,12 +1,37 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { AiOutlineEdit} from 'react-icons/ai';
+import { AiOutlineConsoleSql, AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 const HomeIns = () => {
 
   const [instructors, setinstructors] = useState([])
+
+  const [admin, setAdmin] = useState()
+  const token = localStorage.getItem('token')
+  const data = {
+      token
+  }
+  useEffect(()=>{
+    console.log('inside use effect')
+    if(!token){
+      alert('You are not logged in')
+      window.location.href = ('/')
+    }else{
+      console.log('here')
+      axios.post('https://quizly-nine.vercel.app/api/token', data)
+      .then((response)=>{
+        console.log(response.data)
+        if(response.data.status === 'ok'){
+          setAdmin(response.data.admin)
+        }
+      }).catch((error)=>{
+        console.log('happy')
+        console.log(error)
+      })
+    }
+  },[])
 
   useEffect(()=>{
     axios
@@ -20,7 +45,10 @@ const HomeIns = () => {
       })
   }, [])
   return (
-    <div className='STD-Container'>
+    <div>
+
+    {admin ?
+    (<div className='STD-Container'>
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl my-8'>Instructor List</h1>
         <div className='STD-underline'></div>
@@ -53,7 +81,7 @@ const HomeIns = () => {
                 <td>{instructor.whatsapp}</td>
                 <td>{instructor.email}</td>
                 <td>
-                  <div className='flex justify-center gap-x-4'>
+                  <div>
                     <Link to = {`/instructors/show/${instructor._id}`}> 
                       <BsInfoCircle className='text-2xl text-green-800'/>
                     </Link>
@@ -71,6 +99,7 @@ const HomeIns = () => {
             }
           </tbody>
         </table>
+    </div>): <h1>You are not Allowed in this page</h1>}
     </div>
   )
 }

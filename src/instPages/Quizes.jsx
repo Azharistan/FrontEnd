@@ -14,7 +14,7 @@ const Quiz = () => {
   useEffect(()=>{
     if(!token){
       alert('You are not logged in')
-      window.location.href = ('https://quizly-cust.netlify.app/login')
+      window.location.href = ('/')
     }else{
       axios.post('https://quizly-nine.vercel.app/api/token', data)
       .then((response)=>{
@@ -81,7 +81,7 @@ const Quiz = () => {
       axios.post(`https://quizly-nine.vercel.app/quizes/publishQuiz/${quiz}`)
       .then((response)=>{
         console.log(response.data)
-        window.location.href = (`https://quizly-cust.netlify.app/Qrpage/${response.data.quiz._id}`);
+        window.location.href = (`/Qrpage/${response.data.quiz._id}`);
         setClicked(!clicked)
       }).catch((error)=>{
         console.log(error)
