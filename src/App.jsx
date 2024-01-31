@@ -58,7 +58,6 @@ import Request from "./components/request.jsx";
 
 import Classes from "./components/Classes.jsx";
 
-import QuizForm from "./QuizPages/Question.jsx";
 import CreateQuiz from "./instPages/CreateQuiz.jsx";
 import InsClasses from "./components/InsClasses.jsx";
 import Quiz from "./instPages/Quizes.jsx";
@@ -129,7 +128,6 @@ function App() {
         <Route exact path="/joinclass" element={<JoinClass />}/>
         <Route exact path="/JoinedClasses" element={<Classes />}/>
         <Route exact path="/question" element={<CreateQuiz />}/>
-        <Route exact path="/questions" element={<QuizForm />}/>
         <Route exact path="/insclasses" element={<InsClasses />}/>
         <Route exact path="/QuizList" element={<Quiz />}/>
         <Route exact path="/QRPage/:id" element={<QRPage />}/>

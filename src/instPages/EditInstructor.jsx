@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import "../stdPages/stdStyle/EditStudent.css"
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const EditInstuctor = () => {
@@ -15,11 +15,12 @@ const EditInstuctor = () => {
   const [whatsapp, setWhatsapp] = useState('');
   const [department, setDepartment] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
   useEffect(()=>{
-    axios.post(`https://quizly-nine.vercel.app/api/token`, tt)
+    axios.post(`${backendUrl}/api/token`, tt)
     .then((response)=>{
       set_id(response.data.instructor._id);
       setName(response.data.instructor.name)
@@ -43,7 +44,7 @@ const EditInstuctor = () => {
       department
     };
     axios
-    .put(`https://quizly-nine.vercel.app/instructors/${_id}`, data)
+    .put(`${backendUrl}/instructors/${_id}`, data)
     .then((response) =>{
       if(response.data.token){
         token = response.data.token
@@ -54,7 +55,7 @@ const EditInstuctor = () => {
       }else{
         alert('Something went wrong please try again')
       }
-      axios.post('https://quizly-nine.vercel.app/api/token', tt)
+      axios.post(`${backendUrl}/api/token`, tt)
       .then((res)=>{
         set_id(res.data.instructor._id)
         setName(res.data.instructor.name)

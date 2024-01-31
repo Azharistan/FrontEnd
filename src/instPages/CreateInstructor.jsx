@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import validator from 'validator';
@@ -14,10 +14,11 @@ const CreateInstructor = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [departments, setDepartments] = useState([]);
   const navigate = useNavigate();
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     axios
-      .get('https://quizly-nine.vercel.app/departments')
+      .get(`${backendUrl}/departments`)
       .then((response) => {
         setDepartments(response.data.dep);
         console.log(response.data);
@@ -33,7 +34,7 @@ const CreateInstructor = () => {
     }
 
     axios
-      .get(`https://quizly-nine.vercel.app/instructors/${_id}`)
+      .get(`${backendUrl}/instructors/${_id}`)
       .then((response) => {
         if (response.data) return alert(`An instructor with ProfID: ${_id} already exists`);
       })
@@ -59,7 +60,7 @@ const CreateInstructor = () => {
     };
 
     axios
-      .post('https://quizly-nine.vercel.app/instructors', data)
+      .post(`${backendUrl}/instructors`, data)
       .then(() => {
         navigate('/login');
       })

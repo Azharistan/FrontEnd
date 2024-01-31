@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
@@ -7,11 +7,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 const DeleteStudent = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const {id }=useParams();
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const {id }=useParams();
   const handleDeleteStudent=()=>{
     setLoading(true);
     axios
-      .delete(`https://quizly-nine.vercel.app/students/${id}`)
+      .delete(`${backendUrl}/students/${id}`)
       .then(()=>{
         setLoading(false);
         navigate('/students');

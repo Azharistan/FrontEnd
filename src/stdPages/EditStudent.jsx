@@ -16,10 +16,11 @@ const EditStudent = () => {
   const [semester, setSemester] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const navigate = useNavigate();
   useEffect(()=>{
-    axios.post(`https://quizly-nine.vercel.app/api/token`, tt)
+    axios.post(`${backendUrl}/api/token`, tt)
     .then((response)=>{
       set_id(response.data.student._id);
       setName(response.data.student.name)
@@ -42,7 +43,7 @@ const EditStudent = () => {
       semester
     };
       axios
-      .put(`https://quizly-nine.vercel.app/students/${_id}`, data)
+      .put(`${backendUrl}/students/${_id}`, data)
       .then((response)=>{
         if(response.data.token){
         token = response.data.token
@@ -53,7 +54,7 @@ const EditStudent = () => {
       }else{
           alert('Something went wrong please try again')
         }
-        axios.post(`https://quizly-nine.vercel.app/api/token`, tt)
+        axios.post(`${backendUrl}/api/token`, tt)
         .then((res)=>{
           set_id(res.data.student._id);
           setName(res.data.student.name)

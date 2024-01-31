@@ -4,7 +4,8 @@ import "../stdPages/stdStyle/Home.css"
 import { Navigate } from 'react-router-dom';
 const InsClasses = () => {
   var index = 0;
-  const [show, setShow] = useState(false);
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [show, setShow] = useState(false);
   const [ss, setSs] = useState({})
   const [instructor, setInstructor] = useState()
         var token = localStorage.getItem('token')
@@ -17,7 +18,7 @@ const InsClasses = () => {
             alert('you are not logged in')
             window.location.href = ('/')
         }else{
-            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            axios.post(`${backendUrl}/api/token`, data)
             .then((response)=>{
                 if(response.data.status === 'ok'){
                     setInstructor(response.data.instructor)
@@ -28,7 +29,7 @@ const InsClasses = () => {
                   _id:instructor._id
                 }
                 axios
-                .post('https://quizly-nine.vercel.app/classes/getByInstructor', data)
+                .post(`${backendUrl}/classes/getByInstructor`, data)
                 .then((response) =>{
                   console.log(response.data)
                   fetchClassDetails(response.data.class1)
@@ -50,7 +51,7 @@ const InsClasses = () => {
 
   const fetchClassDetails = (classs)=>{
     const promises = classs.map((Class) => {
-      const coursePromise = axios.get(`https://quizly-nine.vercel.app/courses/${Class.courseID}`)
+      const coursePromise = axios.get(`${backendUrl}/courses/${Class.courseID}`)
       return Promise.all([coursePromise])
       .then((responses)=>{
         const [courseResponse] = responses

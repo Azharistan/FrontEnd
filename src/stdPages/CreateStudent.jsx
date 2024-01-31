@@ -14,6 +14,7 @@ const CreateStudent = () => {
   const [semester, setSemester] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ const CreateStudent = () => {
       return alert("Invalid Registraion No.")
     }
     
-    axios.get(`https://quizly-nine.vercel.app/students/${_id}`)
+    axios.get(`${backendUrl}/students/${_id}`)
     .then((response)=>{
       console.log("Data",response.data,"End")
       if(response.data)
@@ -54,7 +55,7 @@ const CreateStudent = () => {
     };
     
     axios
-      .post('https://quizly-nine.vercel.app/students', data)
+      .post(`${backendUrl}/students`, data)
       .then(() =>{
         console.log(data)
         navigate('/login');

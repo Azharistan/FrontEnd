@@ -4,6 +4,7 @@ import "./stdStyle/ShowStudent.css"
 
 const ShowStudent = () => {
   const [students, setStudents] = useState({});
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   useEffect(()=>{
 
@@ -15,7 +16,7 @@ const ShowStudent = () => {
         alert('you are not logged in')
         window.location.href = ('/')
     }else{
-        axios.post('https://quizly-nine.vercel.app/api/token', data)
+        axios.post(`${backendUrl}/api/token`, data)
         .then((response)=>{
             if(response.data.status === 'ok'){
                 setStudents(response.data.student)

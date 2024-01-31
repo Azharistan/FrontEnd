@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
  
 const InsPage=() => {
     const [prof, setProf] = useState()
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const token = localStorage.getItem('token')
     const data = {
         token
@@ -16,7 +17,7 @@ const InsPage=() => {
             window.location.href = ('/')
         }else{
             console.log('here')
-            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            axios.post(`${backendUrl}/api/token`, data)
             .then((response)=>{
                 if(response.data.status === 'ok'){
                     setProf(response.data.instructor)

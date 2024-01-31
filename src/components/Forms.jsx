@@ -6,15 +6,16 @@ import person_icon from '../assets/person.png';
 import password_icon from '../assets/password.png';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 function LogIn(){
     const [_id, setID] = useState('');
     const [loading, setLoading] = useState(false);
     const [password, setPass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const Navigate = useNavigate()
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
     useEffect(()=>{
+        console.log(backendUrl)
         setLoading(true)
         const token = localStorage.getItem('token')
         if(token){    
@@ -22,7 +23,7 @@ function LogIn(){
                 token
             }
 
-            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            axios.post(`${backendUrl}/api/token`, data)
             .then((response)=>{
                 if(response.data.instructor){
                     setLoading(false)
@@ -55,7 +56,7 @@ async function handleLogin(event){
         _id,
         password
     }
-axios.post('https://quizly-nine.vercel.app/api/login', body)
+axios.post(`${backendUrl}/api/login`, body)
 .then((response)=>{
     if(response.data.status === 'ok'){
         localStorage.setItem('token', response.data.token)
@@ -86,7 +87,7 @@ const handleKeyPress = (e) => {
     loading?
     <div className='container'>
         <div className='header'>
-            <div className='text'> Log In</div>
+            <div className='text'> Log In </div>
             <div className='underline'></div>
         </div>
         <form onSubmit={handleLogin}>

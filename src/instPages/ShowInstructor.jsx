@@ -6,6 +6,7 @@ import "../stdPages/stdStyle/ShowStudent.css"
 const ShowInstuctor = () => {
   const [instructors, setinstructors] = useState({});
   const [dep, setDep] = useState()
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   useEffect(()=>{
     const token = localStorage.getItem('token')
@@ -16,14 +17,14 @@ const ShowInstuctor = () => {
       alert("You are not logged in")
       window.location.href= ('/login')
     }else{
-      axios.post('https://quizly-nine.vercel.app/api/token', data)
+      axios.post(`${backendUrl}/api/token`, data)
       .then((response)=>{
         if(response.data.status === 'ok'){
           setinstructors(response.data.instructor)
           return(response.data.instructor)
         }
       }).then((res)=>{
-        axios.get(`https://quizly-nine.vercel.app/departments/${res.department}`)
+        axios.get(`${backendUrl}/departments/${res.department}`)
         .then((response) => {    
             setDep(response.data.name)
           })

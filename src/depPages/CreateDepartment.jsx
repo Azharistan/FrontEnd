@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import BackButton from '../components/BackButton'
+// import BackButton from '../components/BackButton'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
@@ -11,12 +11,13 @@ const CreateDepartment = () => {
   const [name, setName] = useState('');
   const [dean, setDean] = useState('');
   const [hod, setHOD] = useState('');
-  const [loading, setLoading] = useState(false)
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
   const handleSaveDepartment = () =>{
 
-    axios.get(`https://quizly-nine.vercel.app/departments/${_id}`)
+    axios.get(`${backendUrl}/departments/${_id}`)
     .then((response)=>{
       if(response.data)
       return alert(`A Department with department ID: ${_id} already exist`)
@@ -31,7 +32,7 @@ const CreateDepartment = () => {
     };
     setLoading(true);
     axios
-      .post('https://quizly-nine.vercel.app/departments', data)
+      .post(`${backendUrl}/departments`, data)
       .then(() =>{
         setLoading(false);
         navigate('/departments');

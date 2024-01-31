@@ -1,10 +1,11 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style/Home.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
  
 const StdPage=() => {
 
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const [std, setStd] = useState()
         const token = localStorage.getItem('token')
         const data = {
@@ -15,7 +16,7 @@ const StdPage=() => {
                 alert('you are not logged in')
                 window.location.href = ('/')
             }else{
-                axios.post('https://quizly-nine.vercel.app/api/token', data)
+                axios.post(`${backendUrl}/api/token`, data)
                 .then((response)=>{
                     if(response.data.status === 'ok'){
                         setStd(response.data.student)

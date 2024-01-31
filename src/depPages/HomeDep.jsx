@@ -8,12 +8,13 @@ import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 const HomeDep = () => {
 
   const [departments, setDepartments] = useState([])
-  const [loading, setLoading] = useState(false)
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
     setLoading(true);
     axios
-      .get('https://quizly-nine.vercel.app/departments')
+      .get(`${backendUrl}/departments`)
       .then((response) =>{ 
         setDepartments(response.data.dep)
         setLoading(false);

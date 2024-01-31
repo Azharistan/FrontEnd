@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {QRCodeSVG} from 'qrcode.react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -7,10 +7,11 @@ const QRPage = () => {
 
     const {id} = useParams();
     const [loading, setloading] = useState(false)
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const [link, setLink] = useState('');
     console.log(id)
     useEffect(()=>{
-        axios.get(`https://quizly-nine.vercel.app/quizes/attempt/${id}`)
+        axios.get(`${backendUrl}/quizes/attempt/${id}`)
         .then((response)=>{
             console.log(response)
             setloading(true)

@@ -7,11 +7,12 @@ axios
 
 const Admin = () => {
     const [id, setID] = useState('')
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const [pass, setPass] = useState('')
 
     const Navigate = useNavigate()
     const handleLogin = () =>{
-        axios.get(`https://quizly-nine.vercel.app/admins/${id}`)
+        axios.get(`${backendUrl}/admins/${id}`)
             .then((response)=>{
                 if((pass)===response.data.pass)
                     {Navigate('/create')}

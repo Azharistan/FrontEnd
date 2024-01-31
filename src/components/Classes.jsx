@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import axios from 'axios';
 const JoinClass = () => {
   var index = 0;
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const [std, setStd] = useState()
         var token = localStorage.getItem('token')
@@ -14,7 +15,7 @@ const JoinClass = () => {
             alert('you are not logged in')
             window.location.href = ('/')
         }else{
-            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            axios.post(`${backendUrl}/api/token`, data)
             .then((response)=>{
                 if(response.data.status === 'ok'){
                     setStd(response.data.student)
@@ -38,7 +39,7 @@ const JoinClass = () => {
   
   useEffect(()=>{
     axios
-      .get('https://quizly-nine.vercel.app/classes')
+      .get(`${backendUrl}/classes`)
       .then((response) =>{
         fetchClassDetails(response.data.class1)
       })
@@ -49,8 +50,8 @@ const JoinClass = () => {
 
   const fetchClassDetails = (classs)=>{
     const promises = classs.map((Class) => {
-      const coursePromise = axios.get(`https://quizly-nine.vercel.app/courses/${Class.courseID}`)
-      const instructorPromise = axios.get(`https://quizly-nine.vercel.app/instructors/${Class.instructor}`)
+      const coursePromise = axios.get(`${backendUrl}/courses/${Class.courseID}`)
+      const instructorPromise = axios.get(`${backendUrl}/instructors/${Class.instructor}`)
       return Promise.all([coursePromise,instructorPromise])
       .then((responses)=>{
         const [courseResponse, instructorResponse] = responses
@@ -95,7 +96,7 @@ useEffect(()=>{
       class_ID
     )
 {
-  axios.post(`https://quizly-nine.vercel.app/approvals`, data)
+  axios.post(`${backendUrl}/approvals`, data)
     .then((response)=>{
       if(response.status===201){
         const newclass = {
@@ -104,7 +105,7 @@ useEffect(()=>{
           classID: class_ID._id
         }
         std.classes.push(newclass)
-        axios.put(`https://quizly-nine.vercel.app/students/${std._id}`, std)
+        axios.put(`${backendUrl}/students/${std._id}`, std)
           .then((res)=>{
             localStorage.removeItem('token')
             localStorage.setItem('token', res.data.token)

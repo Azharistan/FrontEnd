@@ -7,11 +7,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 const DeleteDepartment = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const {id }=useParams();
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const {id }=useParams();
   const handleDeleteDepartment=()=>{
     setLoading(true);
     axios
-      .delete(`https://quizly-nine.vercel.app/departments/${id}`)
+      .delete(`${backendUrl}/departments/${id}`)
       .then(()=>{
         setLoading(false);
         navigate('/departments');

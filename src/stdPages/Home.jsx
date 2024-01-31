@@ -10,11 +10,12 @@ const Home = () => {
 
   const [students, setStudents] = useState([])
   const [loading, setLoading] = useState(false)
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   useEffect(()=>{
     setLoading(true);
     axios
-      .get('https://quizly-nine.vercel.app/students')
+      .get(`${backendUrl}/students`)
       .then((response) =>{ 
         setStudents(response.data.students)
         setLoading(false);

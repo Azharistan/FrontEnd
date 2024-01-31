@@ -8,11 +8,12 @@ const ShowCourses = () => {
   const [courses, setCourses] = useState({});
   const [loading, setLoading] =useState(false)
   const {id} = useParams()
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   useEffect(()=>{
     setLoading(true)
     axios
-      .get(`https://quizly-nine.vercel.app/courses/${id}`)
+      .get(`${backendUrl}/courses/${id}`)
       .then((response)=>{
         setCourses(response.data);
         console.log('this',response.data)

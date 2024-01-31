@@ -6,6 +6,7 @@ const Quiz = () => {
   const [classes, setClasses] = useState([])
   const [quiz, setQuiz] = useState()
   const [clicked, setClicked] = useState(true)
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const token = localStorage.getItem('token')
   const data = {
@@ -16,7 +17,7 @@ const Quiz = () => {
       alert('You are not logged in')
       window.location.href = ('/')
     }else{
-      axios.post('https://quizly-nine.vercel.app/api/token', data)
+      axios.post(`${backendUrl}/api/token`, data)
       .then((response)=>{
         if(response.data.status === 'ok'){
           setProf(response.data.instructor)
@@ -26,7 +27,7 @@ const Quiz = () => {
         const data = {
           _id: instructor._id
         }
-        axios.post('https://quizly-nine.vercel.app/classes/getByInstructor', data)
+        axios.post(`${backendUrl}/classes/getByInstructor`, data)
         .then((res)=>{
           console.log("Classes = ", res.data.class1)
           setClasses(res.data.class1)
@@ -45,7 +46,7 @@ const Quiz = () => {
         if (Class.quizList.length !== 0) {
           Class.quizList.forEach((q) => {
             promises.push(
-              axios.get(`https://quizly-nine.vercel.app/quizes/${q}`)
+              axios.get(`${backendUrl}/quizes/${q}`)
                 .then((response) => {
                   var quizNo = 8;
                   for(let i=0; i<Class.quizList.length; i++) {
@@ -78,7 +79,7 @@ const Quiz = () => {
 
   const publishQuiz = (quiz)=>{
     if(quiz){
-      axios.post(`https://quizly-nine.vercel.app/quizes/publishQuiz/${quiz}`)
+      axios.post(`${backendUrl}/quizes/publishQuiz/${quiz}`)
       .then((response)=>{
         console.log(response.data)
         window.location.href = (`/Qrpage/${response.data.quiz._id}`);

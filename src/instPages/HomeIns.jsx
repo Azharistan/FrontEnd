@@ -1,14 +1,15 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { AiOutlineConsoleSql, AiOutlineEdit} from 'react-icons/ai';
+import { AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 const HomeIns = () => {
 
   const [instructors, setinstructors] = useState([])
 
-  const [admin, setAdmin] = useState()
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [admin, setAdmin] = useState()
   const token = localStorage.getItem('token')
   const data = {
       token
@@ -20,7 +21,7 @@ const HomeIns = () => {
       window.location.href = ('/')
     }else{
       console.log('here')
-      axios.post('https://quizly-nine.vercel.app/api/token', data)
+      axios.post(`${backendUrl}/api/token`, data)
       .then((response)=>{
         console.log(response.data)
         if(response.data.status === 'ok'){
@@ -35,7 +36,7 @@ const HomeIns = () => {
 
   useEffect(()=>{
     axios
-      .get('https://quizly-nine.vercel.app/instructors')
+      .get(`${backendUrl}/instructors`)
       .then((response) =>{ 
         setinstructors(response.data.instructors)
         console.log(response.data.instructors)

@@ -3,8 +3,7 @@ import {useState} from 'react'
 import BackButton from '../components/BackButton'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import objectHash from 'object-hash'
-import { Link } from "react-router-dom";
+import objectHash from 'object-hash';
 
 const StudentSignUp = () => {
     
@@ -15,6 +14,7 @@ const StudentSignUp = () => {
   const [email, setEmail] = useState('');
   var [password, setPassword] = useState('');
   const [loading, setLoading] = useState('');
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const navigate = useNavigate();
   const handleSaveStudent = () =>{
@@ -30,7 +30,7 @@ const StudentSignUp = () => {
     };
     setLoading(true);
     axios
-      .post('https://quizly-nine.vercel.app/students', data)
+      .post(`${backendUrl}/students`, data)
       .then(() =>{
         setLoading(false);
         navigate('/');

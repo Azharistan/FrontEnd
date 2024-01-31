@@ -3,7 +3,8 @@ import axios from 'axios';
 const Request = () => {
 
   const [approval, setApproval] = useState([])
-  const [run, setRun] = useState(false)
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [run, setRun] = useState(false)
   var from
   var section
   var detail
@@ -16,15 +17,13 @@ const Request = () => {
         token
     }
     useEffect(()=>{
-        console.log('inside use effect')
         if(!token){
             alert('You are not logged in')
             window.location.href = ('/')
         }else{
-            console.log('here')
-            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            axios.post(`${backendUrl}/api/token`, data)
             .then((response)=>{
-                if(response.data.status === 'ok'){
+                if(response.data){
                   if(response.data.admin)
                     setUser(response.data.admin)
                   else if(response.data.instructor)
@@ -32,7 +31,6 @@ const Request = () => {
                   else console.log("no user")
                 }
             }).catch((error)=>{
-                console.log('happy')
                 console.log(error)
             })
         }
@@ -46,10 +44,10 @@ const Request = () => {
     courseID
     }
     console.log(apprv)
-    axios.post(`https://quizly-nine.vercel.app/api/request`, apprv)
+    axios.post(`${backendUrl}/api/request`, apprv)
     .then((response)=>{
         console.log(response.data.ID)
-        axios.delete(`https://quizly-nine.vercel.app/approvals/${response.data.ID}`)
+        axios.delete(`${backendUrl}/approvals/${response.data.ID}`)
         .then(()=>{
             console.log('deleted')
             window.location.href = ('/request')
@@ -70,7 +68,7 @@ const Request = () => {
         courseID,
         section
       }
-      axios.post('https://quizly-nine.vercel.app/classes', data)
+      axios.post(`${backendUrl}/classes`, data)
         .then(()=>{
           console.log("Class Created")
           const apprv = {
@@ -80,7 +78,7 @@ const Request = () => {
             courseID
           }
           console.log(apprv)
-          axios.post(`https://quizly-nine.vercel.app/api/request`, apprv)
+          axios.post(`${backendUrl}/api/request`, apprv)
           .then((response)=>{
             console.log(response.data.ID)
             handleDelete()
@@ -96,7 +94,7 @@ const Request = () => {
         section
       }
 
-      axios.post('https://quizly-nine.vercel.app/api/joinClass', data)
+      axios.post(`${backendUrl}/api/joinClass`, data)
         .then((response)=>{
           console.log(response.status)
           const apprv = {
@@ -106,10 +104,10 @@ const Request = () => {
             courseID
           }
           console.log(apprv)
-          axios.post(`https://quizly-nine.vercel.app/api/request`, apprv)
+          axios.post(`${backendUrl}/api/request`, apprv)
           .then((response)=>{
             console.log(response.data.ID)
-            axios.delete(`https://quizly-nine.vercel.app/approvals/${response.data.ID}`)
+            axios.delete(`${backendUrl}/approvals/${response.data.ID}`)
             .then(()=>{
               console.log('deleted')
               window.location.href = ('/request')
@@ -124,9 +122,10 @@ const Request = () => {
   }
 
   useEffect(()=>{
-    console.log("in loop")
-    axios
-      .get(`https://quizly-nine.vercel.app/approvals/byuser/${user._id}`)
+    if(user){
+
+      axios
+      .get(`${backendUrl}/approvals/byuser/${user._id}`)
       .then((response) =>{ 
         console.log(response.data)
         setApproval(response.data.approvals)
@@ -134,6 +133,7 @@ const Request = () => {
       .catch((error)=>{
         console.log(error);
       })
+    }
   }, [run])
   return (
     <div className='STD-Container'>

@@ -7,6 +7,7 @@ import { AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 const HomeClass = () => {
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const [classs, setClasss] = useState([])
   const [loading, setLoading] = useState(false)
@@ -14,7 +15,7 @@ const HomeClass = () => {
   useEffect(()=>{
     setLoading(true);
     axios
-      .get('https://quizly-nine.vercel.app/classes')
+      .get(`${backendUrl}/classes`)
       .then((response) =>{ 
         console.log(response.data)
         setClasss(response.data.class1)

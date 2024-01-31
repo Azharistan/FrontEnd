@@ -8,11 +8,12 @@ const ShowClass = () => {
   const [classes, setClasses] = useState({});
   const [instructor, setInstructor] = useState()
   const [course, setCourse] = useState()
-  const {id} = useParams()
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const {id} = useParams()
 
   useEffect(()=>{
     axios
-      .get(`https://quizly-nine.vercel.app/classes/${id}`)
+      .get(`${backendUrl}/classes/${id}`)
       .then((response)=>{
         setClasses(response.data);
         console.log('this',response.data)
@@ -23,11 +24,11 @@ const ShowClass = () => {
         console.log('this',error);
       });
     }, [])
-    axios.get(`https://quizly-nine.vercel.app/instructors/${instructor}`)
+    axios.get(`${backendUrl}/instructors/${instructor}`)
     .then((res)=>{
       setInstructor(res.data.name)
     })
-    axios.get(`https://quizly-nine.vercel.app/courses/${course}`)
+    axios.get(`${backendUrl}/courses/${course}`)
     .then((res)=>{
       setCourse(res.data.name)
     })

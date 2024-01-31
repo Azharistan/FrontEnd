@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
  
 const Create=() => {
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const [admin, setAdmin] = useState()
     const token = localStorage.getItem('token')
     const data = {
@@ -15,7 +16,7 @@ const Create=() => {
             window.location.href = ('/')
         }else{
             console.log('here')
-            axios.post('https://quizly-nine.vercel.app/api/token', data)
+            axios.post(`${backendUrl}/api/token`, data)
             .then((response)=>{
                 if(response.data.status === 'ok'){
                     setAdmin(response.data.admin)

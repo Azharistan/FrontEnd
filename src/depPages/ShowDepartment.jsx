@@ -7,12 +7,13 @@ import Spinner from '../components/Spinner'
 const ShowDepartment = () => {
   const [departments, setDepartments] = useState({});
   const [loading, setLoading] =useState(false)
-  const {id} = useParams()
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const {id} = useParams()
 
   useEffect(()=>{
     setLoading(true)
     axios
-      .get(`https://quizly-nine.vercel.app/departments/${id}`)
+      .get(`${backendUrl}/departments/${id}`)
       .then((response)=>{
         setDepartments(response.data);
         console.log('this',response.data)

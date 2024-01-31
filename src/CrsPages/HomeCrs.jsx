@@ -8,12 +8,13 @@ import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 const HomeCrs = () => {
 
   const [courses, setCourses] = useState([])
-  const [loading, setLoading] = useState(false)
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
     setLoading(true);
     axios
-      .get('https://quizly-nine.vercel.app/courses')
+      .get(`${backendUrl}/courses`)
       .then((response) =>{ 
         setCourses(response.data.course)
         console.log(response.data.course)

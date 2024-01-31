@@ -1,6 +1,6 @@
 // File: CreateQuiz.js
 
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import './QuizStyle/createquiz.css'; // Make sure to import the CSS file
 
@@ -13,6 +13,7 @@ const CreateQuiz = () => {
   const [selectClass, setSelectClass] = useState({});
   const [showNewQuestion, setNewQuestion] = useState(false);
   const [showExistingQuestion, setExistingQuestion] = useState(false);
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
   
   const [questionData, setQuestionData] = useState({
     courseID: '',
@@ -52,7 +53,7 @@ const CreateQuiz = () => {
       alert('You are not logged in');
       window.location.href = '/login';
     } else {
-      axios.post('https://quizly-nine.vercel.app/api/token', { token })
+      axios.post(`${backendUrl}/api/token`, { token })
         .then((response) => {
           if (response.data.status === 'ok') {
             setInstructor(response.data.instructor);
@@ -103,7 +104,7 @@ const CreateQuiz = () => {
 
   const handleSubmit = () => {
     console.log(questionData)
-    axios.post('https://quizly-nine.vercel.app/questions', questionData)
+    axios.post(`${backendUrl}/questions`, questionData)
       .then((response) => {
         setQuestionStats([...questionStats, response.data]);
         setQuestionData({
@@ -134,14 +135,14 @@ const CreateQuiz = () => {
       questions: updatedQuestions
     };
 
-    axios.post('https://quizly-nine.vercel.app/quizes', data)
+    axios.post(`${backendUrl}/quizes`, data)
       .then((response) => {
         console.log(response.data);
-        axios.get(`https://quizly-nine.vercel.app/classes/${selectClass._id}`)
+        axios.get(`${backendUrl}/classes/${selectClass._id}`)
           .then((res)=>{
             res.data.quizList.push(response.data._id)
             console.log(res.data)
-            axios.put(`https://quizly-nine.vercel.app/classes/${selectClass._id}`, res.data)
+            axios.put(`${backendUrl}/classes/${selectClass._id}`, res.data)
             .then((response)=>{
               if (response==='ok')
                 alert("Quiz Created Succesfully!")
@@ -157,7 +158,7 @@ const CreateQuiz = () => {
 
   useEffect(()=>{
     if(!(topic)){
-      axios.get(`https://quizly-nine.vercel.app/questions/getByCourse`, {courseID : selectClass.courseID})
+      axios.get(`${backendUrl}/questions/getByCourse`, {courseID : selectClass.courseID})
       .then(async (response)=>{
         await setQuestionList(response.data.question)
         console.log(response.data.question)
@@ -180,7 +181,7 @@ const CreateQuiz = () => {
       topic: topic,
       subTopic : subTopic
     }
-      axios.post('https://quizly-nine.vercel.app/questions/getByCourse', data)
+      axios.post(`${backendUrl}/questions/getByCourse`, data)
       .then((response)=>{
         console.log(response)
       })

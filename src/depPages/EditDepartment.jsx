@@ -10,13 +10,14 @@ const EditDepartment = () => {
   const [name, setName] = useState('');
   const [dean, setDean] = useState('');
   const [hod, setHOD] = useState('');
-  const [loading, setLoading] = useState('');
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [loading, setLoading] = useState('');
 
   const navigate = useNavigate();
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true)
-    axios.get(`https://quizly-nine.vercel.app/departments/${id}`)
+    axios.get(`${backendUrl}/departments/${id}`)
     .then((response)=>{
       set_id(response.data._id);
       setName(response.data.name)
@@ -44,7 +45,7 @@ const EditDepartment = () => {
     };
     setLoading(true);
     axios
-      .put(`https://quizly-nine.vercel.app/departments/${id}`, data)
+      .put(`${backendUrl}/departments/${id}`, data)
       .then(() =>{
         setLoading(false);
         navigate('/HomeDep');

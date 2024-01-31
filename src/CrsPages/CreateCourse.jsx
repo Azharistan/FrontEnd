@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import BackButton from '../components/BackButton'
+// import BackButton from '../components/BackButton'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
@@ -13,12 +13,13 @@ const CreateCourse = () => {
   const [departments, setDepartments] = useState([]);
 
   const [creditHr, setCreditHr] = useState('');
-  const [loading, setLoading] = useState(false)
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
   useEffect(()=>{
     axios
-      .get('https://quizly-nine.vercel.app/departments')
+      .get(`${backendUrl}/departments`)
       .then((response) =>{ 
         setDepartments(response.data.dep)
         console.log(response.data)
@@ -32,7 +33,7 @@ const CreateCourse = () => {
   },[])
   const handleSaveCourse = () =>{
 
-    axios.get(`https://quizly-nine.vercel.app/courses/${_id}`)
+    axios.get(`${backendUrl}/courses/${_id}`)
     .then((response)=>{
       if(response.data){
         return alert(`A Course with Course ID: ${_id} already exist`)
@@ -43,7 +44,7 @@ const CreateCourse = () => {
     })
       
 
-    axios.get(`https://quizly-nine.vercel.app/departments/${depID}`)
+    axios.get(`${backendUrl}/departments/${depID}`)
     .then().catch(()=>{
       return alert(`No department Found with Department ID : ${depID}`)
     })
@@ -56,7 +57,7 @@ const CreateCourse = () => {
     };
     setLoading(true);
     axios
-      .post('https://quizly-nine.vercel.app/courses', data)
+      .post(`${backendUrl}/courses`, data)
       .then(() =>{
         setLoading(false);
         navigate('/courses');

@@ -11,6 +11,8 @@ function CreateClass(){
   const [instructor, setInstructor] = useState();
   const [course, setCourse] = useState([]);
   const [section, setSection] = useState([]);
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+
 
     const token = localStorage.getItem('token')
     const data = {
@@ -22,7 +24,7 @@ function CreateClass(){
         alert('You are not logged in')
         window.location.href = ('/')
       }else{
-        axios.post('https://quizly-nine.vercel.app/api/token', data)
+        axios.post(`${backendUrl}/api/token`, data)
         .then((response)=>{
           if(response.data.status === 'ok'){
             setInstructor(response.data.instructor)
@@ -39,7 +41,7 @@ function CreateClass(){
   const navigate = useNavigate();
   useEffect(()=>{
     axios
-      .get('https://quizly-nine.vercel.app/courses')
+      .get(`${backendUrl}/courses`)
       .then((response) =>{ 
         setCourse(response.data.course)
       })
@@ -58,7 +60,7 @@ function CreateClass(){
       section,
     };
     axios
-      .post('https://quizly-nine.vercel.app/approvals', data)
+      .post(`${backendUrl}/approvals`, data)
       .then(() =>{
         navigate('/inspage');
       })

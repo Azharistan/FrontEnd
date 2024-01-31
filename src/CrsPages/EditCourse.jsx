@@ -4,7 +4,8 @@ import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-const EditCourse = () => {
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const EditCourse = () => {
   const [course, setCourse] = useState({
     _id: '',
     name: '',
@@ -15,7 +16,7 @@ const EditCourse = () => {
   const [loading, setLoading] = useState(false);
   const {id} = useParams()
   useEffect (()=>{
-    axios.get(`https://quizly-nine.vercel.app/courses/${id}`)
+    axios.get(`${backendUrl}/courses/${id}`)
     .then((response)=>{
       console.log(response.data)
       setCourse(response.data)
@@ -88,7 +89,7 @@ const EditCourse = () => {
   const handleEditCourse = () => {
     setLoading(true);
     console.log(course)
-    axios.put(`https://quizly-nine.vercel.app/courses/${course._id}`, course)
+    axios.put(`${backendUrl}/courses/${course._id}`, course)
   };
 
   return (

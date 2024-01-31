@@ -12,13 +12,14 @@ const EditClass = () => {
   const [depID, setDepID] = useState('');
   const [instuctor, setInstructor] = useState('');
   const [section, setSection] = useState([]);
-  const [loading, setLoading] = useState('');
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+    const [loading, setLoading] = useState('');
 
   const navigate = useNavigate();
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true)
-    axios.get(`https://quizly-nine.vercel.app/classes/${id}`)
+    axios.get(`${backendUrl}/classes/${id}`)
     .then((response)=>{
       set_id(response.data._id);
       setClassID(response.data.classID)
@@ -46,7 +47,7 @@ const EditClass = () => {
     };
     setLoading(true);
     axios
-      .put(`https://quizly-nine.vercel.app/classes/${id}`, data)
+      .put(`${backendUrl}/classes/${id}`, data)
       .then(() =>{
         setLoading(false);
         navigate('/HomeClass');
