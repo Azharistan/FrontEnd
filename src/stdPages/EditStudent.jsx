@@ -33,7 +33,8 @@ const EditStudent = () => {
       console.log(error)
     })
   }, []) 
-  function handleEditStudent(){
+  function handleEditStudent(e){
+    e.preventDefault()
     const data = {
       _id,
       name,

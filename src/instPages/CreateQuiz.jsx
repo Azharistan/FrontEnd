@@ -4,6 +4,16 @@ import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import './QuizStyle/createquiz.css'; // Make sure to import the CSS file
 
+function arrayDiff(a, b) {
+  let difference = [];
+  for (let i = 0; i < a.length; i++) {
+      if (b.indexOf(a[i]) === -1) {
+          difference.push(a[i]);
+      }
+  }
+  return difference;
+};
+
 const CreateQuiz = () => {
   const [instructor, setInstructor] = useState();
   const [topic, setTopic] = useState();
@@ -11,8 +21,8 @@ const CreateQuiz = () => {
   const [questionList, setQuestionList] = useState([]);
   const [questionStats, setQuestionStats] = useState([]);
   const [selectClass, setSelectClass] = useState({});
-  const [showNewQuestion, setNewQuestion] = useState(false);
-  const [showExistingQuestion, setExistingQuestion] = useState(false);
+  const [showNewQuestion, setNewQuestion] = useState(false); //modal trigger
+  const [showExistingQuestion, setExistingQuestion] = useState(false); //modal trigger
   const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
   
   const [questionData, setQuestionData] = useState({
@@ -23,22 +33,6 @@ const CreateQuiz = () => {
     options: ['', ''],
     correct: ''
   });
-
-  const topics = [
-
-    {
-      "name" : "conditionals",
-      "subtopics" : ["if else", "switch"]
-    },
-    {
-      "name" : "loops",
-      "subtopics" : ["for", "while", "do while", "for each"]
-    },
-    {
-      "name" : "functions",
-      "subtopics" : ["recursive", "linear"]
-    },
-  ]
 
   useEffect(() => {
     const storedClass = JSON.parse(localStorage.getItem('class'));
@@ -157,36 +151,36 @@ const CreateQuiz = () => {
 
 
   useEffect(()=>{
-    if(!(topic)){
-      axios.get(`${backendUrl}/questions/getByCourse`, {courseID : selectClass.courseID})
+    console.log(topic,subTopic,selectClass.course)
+    if((topic)){
+      axios.post(`${backendUrl}/questions/getByCourse`, {courseID : selectClass.course,
+      topic: topic, subTopic : subTopic})
       .then(async (response)=>{
         await setQuestionList(response.data.question)
+        console.log(arrayDiff(response.data.question, questionStats))
         console.log(response.data.question)
-        console.log(questionList)
+        console.log(questionStats)
       })
     }
   },[topic, subTopic])
 
-  // function handleTopicChange(e){
-  //   setTopic(e.target.value)
-  //   setSubtopic('')
+  
 
-  // }
-  const handleTopicChange = (e) => {
-    const selectedTopic = e.target.value;
-    setTopic(selectedTopic);
-    setSubtopic('');
-    const data = {
-      courseID : selectClass.course,
-      topic: topic,
-      subTopic : subTopic
-    }
-      axios.post(`${backendUrl}/questions/getByCourse`, data)
-      .then((response)=>{
-        console.log(response)
-      })
-  };
-  const filteredSubtopics = topics.find((t) => t.name === topic)?.subtopics || [];
+  // const handleTopicChange = (e) => {
+  //   const selectedTopic = e.target.value;
+  //   setTopic(selectedTopic);
+  //   setSubtopic('');
+  //   const data = {
+  //     courseID : selectClass.course,
+  //     topic: topic,
+  //     subTopic : subTopic
+  //   }
+  //   console.log("data = ", data)
+  //     axios.post(`${backendUrl}/questions/getByCourse`, data)
+  //     .then((response)=>{
+  //       console.log(response.data.question)
+  //     })
+  // };
 
   return (
     <>
@@ -296,75 +290,61 @@ const CreateQuiz = () => {
                         <select
                           name='topic'
                           value={topic}
-                          onChange={handleTopicChange}
+                          onChange={(e)=>{setTopic(e.target.value)
+                          setSubtopic('')}}
                         >
-                          {
-                            topics.map((topic,index)=>(
-                              <>
-                                <option key={index} value={topic.name}>{topic.name}</option>
-                              </>
-                            ))
-                          }
-                        </select>
-                        {topic && (
-                          <>
-                            <label>Select Subtopic:</label>
-                            <select
-            name='subTopic'
-            value={subTopic}
-            onChange={(e) => setSubtopic(e.target.value)}
-          >
-            <option value=''>Select a Subtopic</option>
-            {filteredSubtopics.map((sub, index) => (
-              <option key={index+10} value={sub}>
-                {sub}
-              </option>
-            ))}
-          </select>
-                          </>
-                        )}
-                        <label>Existing Questions :</label>
-                        <input
-                          type='text'
-                          name='statement'
-                          value={questionData.statement}
-                          onChange={handleInputChange}
-                        />
-
-                        {questionData.options.map((option, index) => (
-                          <div key={index}>
-                            <label>Option {index + 1}:</label>
-                            <input
-                              type='text'
-                              name='options'
-                              value={option}
-                              onChange={(e) => handleInputChange(e, index)}
-                            />
-                          </div>
-                        ))}
-
-                        {questionData.options.length < 4 && (
-                          <button type='button' onClick={handleAddOption}>
-                            Add New Option
-                          </button>
-                        )}
-
-                        <label>Select Correct Option:</label>
-                        <select
-                          name='correct'
-                          value={questionData.correct}
-                          onChange={handleInputChange}
-                        >
-                          <option value='' defaultChecked disabled>
-                            Choose correct option
-                          </option>
-                          {questionData.options.map((option, index) => (
-                            <option key={index} value={option}>
-                              {questionData.options[index]}
+                            {selectClass.topics.map((topic, index) => (
+                            <option key={index} value={topic.name}>
+                              {topic.name}
                             </option>
                           ))}
                         </select>
+                        {topic && (
+                          <>
+                          <label>Select Subtopic:</label>
+                          <select
+                            name='subTopic'
+                            value={subTopic}
+                            onChange={(e)=>{setSubtopic(e.target.value)}}
+                          >
+                            <option defaultChecked value={""}>Select SubTopic</option>
+                            {topic &&
+                              selectClass.topics
+                                .find((t) => t.name === topic)
+                                .subTopics.map((st, index) => (
+                                  <option key={index} value={st} >
+                                    {st}
+                                  </option>
+                                ))}
+                          </select>
+                          </>
+                        )}
+                        <label>Existing Questions :</label>
 
+                        <table>
+                          <thead>
+                            <tr>
+                              <td>no.</td>
+                              <td>statement</td>
+                              <td>Correct Option</td>
+                              <td>Action</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {questionList.map((question,index)=>(
+                              <tr key={question._id}>
+                                <td>{index+1}</td>
+                                <td>{question.statement}</td>
+                                <td>{question.correct}</td>
+                                <td><button onClick={(e)=>{
+                                  e.preventDefault()
+                                  setQuestionStats([...questionStats, question])
+                                  }}>add</button></td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        
                         <button type='submit' onClick={(e) => {
                           e.preventDefault();
                           handleSubmit();
@@ -372,7 +352,7 @@ const CreateQuiz = () => {
                       </form>
                     </div>
                   </div>
-
+                  
                 )}
                 <button className='button-options' type='submit' onClick={(e) => {
                   e.preventDefault();

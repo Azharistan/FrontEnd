@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
-// import BackButton from '../components/BackButton'
+// import BackButton from '../BackButton'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import Spinner from '../components/Spinner'
+import Spinner from '../Spinner'
 
 
 const CreateCourse = () => {
