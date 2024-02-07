@@ -1,0 +1,62 @@
+.Nav {
+    background: #15171c;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .NavIcon {
+    margin-left: 2rem;
+    font-size: 2rem;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .SidebarNav {
+    background: #15171c;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .SidebarWrap {
+    width: 100%;
+  }
+  
+  .logo {
+    object-fit: contain;
+    width: 200px;
+  }
+  
+  .Nav .options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .Nav .options ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .Nav .options ul li {
+    margin-bottom: 10px;
+  }
+  
+  .Nav .options ul li a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .Nav .options ul li a:hover {
+    color:  rgb(228, 157, 6); 
+  }
+  

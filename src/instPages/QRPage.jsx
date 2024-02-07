@@ -11,7 +11,7 @@ const QRPage = () => {
     const [link, setLink] = useState('');
     console.log(id)
     useEffect(()=>{
-        axios.get(`${backendUrl}/quizes/attempt/${id}`)
+        axios.post(`${backendUrl}/quizes/attempt/${id}`)
         .then((response)=>{
             console.log(response)
             setloading(true)

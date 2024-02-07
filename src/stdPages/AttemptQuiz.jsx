@@ -19,18 +19,21 @@ const shuffleArray = (array) => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(null);
-    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const [timer, setTimer] = useState(15);
-    const [answer, setAnswer] = useState([{
-        questionID: "",
-        answer : ""
-    }])
+    const [answers, setAnswers] = useState([])
+    const [marks, setMarks] = useState(0)
+    const [showMarks, setShowMarks] = useState(false)
+    const [ans, setAns] = useState({
+      questionID: "",
+      answer : ""
+    })
     const [intervalId, setIntervalId] = useState(null); // Store intervalId in the state
     const { id } = useParams();
     const token = localStorage.getItem('token');
     const data = {
       token,
     };
+    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
   
     useEffect(() => {
       if (!token) {
@@ -51,36 +54,42 @@ const shuffleArray = (array) => {
     }, [token]);
   
     useEffect(() => {
-      axios
-        .get(`${backendUrl}/quizes/attempt/${id}`)
-        .then((response) => {
-          console.log(response.data.status);
-          return response.data.data.questions;
-        })
-        .then((questions) =>
-          Promise.all(
-            shuffleArray(questions).map((questionId) =>
-              axios.get(`${backendUrl}/questions/${questionId}`).then((response) => ({
-                statement: response.data.statement,
-                options: shuffleArray(response.data.options),
-                _id : response.data._id
-              }))
+      if(std){
+        const data = {
+          studentID: std._id
+        }
+        axios
+          .post(`${backendUrl}/quizes/attempt/${id}`,data)
+          .then((response) => {
+            console.log(response.data.status);
+            return response.data.data.questions;
+          })
+          .then((questions) =>
+            Promise.all(
+              shuffleArray(questions).map((questionId) =>
+                axios.get(`${backendUrl}/questions/${questionId}`).then((response) => ({
+                  statement: response.data.statement,
+                  options: shuffleArray(response.data.options),
+                  _id : response.data._id
+                }))
+              )
             )
           )
-        )
-        .then((questionsData) => {
-          setQuestions(questionsData);
-          if (questionsData.length > 0) {
-            setCurrentQuestion(questionsData[0]);
-            setTimer(15);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }, [id]);
+          .then((questionsData) => {
+            setQuestions(questionsData);
+            if (questionsData.length > 0) {
+              setCurrentQuestion(questionsData[0]);
+              setTimer(15);
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    }, [std]);
   
     useEffect(() => {
+
       // Set a new timer when the component mounts or when the timer reaches 0
       if (timer > 0) {
         const id = setInterval(() => {
@@ -98,23 +107,57 @@ const shuffleArray = (array) => {
           setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
           setCurrentQuestion(questions[currentQuestionIndex + 1]);
           setTimer(15);
+          setAnswers([...answers, ans])
+          setAns({
+            questionID: currentQuestion._id,
+            answer : ""
+          })
+        }
+        else{
+          setAnswers([...answers, ans])
         }
       }
     }, [timer, currentQuestionIndex, questions]);
-  
-    const handleNextQuestion = () => {
+    
+    const handleNextQuestion = async () => {
       // Clear the existing interval when the Next Question button is clicked
       clearInterval(intervalId);
-  
+      
       // Move to the next question and reset the timer
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
         setCurrentQuestion(questions[currentQuestionIndex + 1]);
         setTimer(15);
+        setAnswers([...answers, ans])
+        setAns({
+          questionID: currentQuestion._id,
+          answer : ""
+        })
+      }
+      else{
+        setAnswers([...answers, ans])
       }
     };
-  
+
+    useEffect(()=>{
+      if((answers.length === questions.length) && std)
+      {
+        const data = {
+          answers: answers,
+          regNo : std._id,
+          quizID : id
+        }
+        axios.post(`${backendUrl}/checkQuiz`, data)
+        .then((response)=>{
+          setMarks(response.data.marks)
+          setShowMarks(true)
+        })
+      }
+    },[answers])
+    
     return (
+      <div>
+      {showMarks? (<h1>you have achieved {marks} marks</h1>):(
         <div>
         {currentQuestion && (
           <div>
@@ -122,26 +165,28 @@ const shuffleArray = (array) => {
             <label>Question {currentQuestionIndex + 1} : {currentQuestion.statement}</label>
             {currentQuestion.options.map((opt, index) => (
               <div key={index}>
-                <input
-                  type="radio"
-                  name="answer" // Give each radio button the same name
-                  value={opt}
-                  onChange={()=>{
-                    const ans = {
+              <input
+                type="radio"
+                id={`option${index}`}
+                name="answer"
+                value={opt}
+                onChange={()=>{
+                    setAns({
                         questionID : currentQuestion._id,
                         answer : opt
-                    }
-                  setAnswer([...answer, ans])
-                    console.log(ans)
-                  }
-                  }
-                />
-                <label>{opt}</label>
-              </div>
-            ))}
+                    })
+                }}
+                checked={ans.answer === opt} // Set checked state based on whether the option is selected
+              />
+              <label htmlFor={`option${index}`}>{opt}</label>
+            </div>
+))}
+
             <button onClick={handleNextQuestion}>Next Question</button>
           </div>
         )}
+        </div>
+      )}
       </div>
       
     );

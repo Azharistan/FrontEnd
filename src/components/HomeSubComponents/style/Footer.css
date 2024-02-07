@@ -1,0 +1,9 @@
+.Social{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Social hr {
+    border: 1px solid  rgb(228, 157, 6);
+}

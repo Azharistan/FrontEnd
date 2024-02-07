@@ -1,9 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
 //student Actions
 
-import Home from "./stdPages/Home";
+import StdHome from "./stdPages/StdHome.jsx";
 import StdPage from "./stdPages/StdPage.jsx";
 import CreateStudent from "./stdPages/CreateStudent.jsx";
 import ShowStudent from "./stdPages/ShowStudent";
@@ -59,18 +60,34 @@ import Create from "./components/Create";
 import Request from "./components/request.jsx";
 import Classes from "./stdPages/Classes.jsx";
 
-
-
-
+import SignUp from "./components/SignUp.jsx";
+import Sidebar from "./components/Sidebar.jsx";
+import { AboutUs, OurAim, OurVision } from "./pages/AboutUs";
+import { Events } from "./pages/Events";
+import Contact from "./pages/ContactUs";
+import Support from "./pages/Support";
+import Home from "./components/Home.jsx";
 
 
 function App() {
   return (
     <div>
-      
     <Router>
+      <Sidebar />
+
       <Routes>
-        <Route exact path="/" element={<LogIn />}/>
+      <Route exact path="/" element={<Home/>} />
+        <Route path='/about-us' element={<AboutUs/>} />
+        <Route path='/about-us/aim' element={<OurAim/>} />
+        <Route path='/about-us/vision' element={<OurVision/>} />
+
+        <Route path='/contact' element={<Contact/>} />
+        <Route path='/events' element={<Events/>} />
+
+        <Route path='/support' element={<Support/>} />
+
+        <Route exact path="/login" element={<LogIn />}/>
+        <Route exact path="/signup" element={<SignUp/>}/>
         
         
         <Route exact path="/instructors" element = {<HomeIns />} />
@@ -80,7 +97,7 @@ function App() {
         <Route exact path="/instructors/delete" element = {<DeleteInstuctor />}/>
 
 
-        <Route exact path="/students" element={<Home/>} />
+        <Route exact path="/students" element={<StdHome/>} />
         <Route exact path="/students/create" element={<CreateStudent/>} />
         <Route exact path="/students/info" element={<ShowStudent/>} />
         <Route exact path="/students/edit" element={<EditStudent/>} />

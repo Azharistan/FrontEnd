@@ -4,15 +4,6 @@ import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import './QuizStyle/createquiz.css'; // Make sure to import the CSS file
 
-function arrayDiff(a, b) {
-  let difference = [];
-  for (let i = 0; i < a.length; i++) {
-      if (b.indexOf(a[i]) === -1) {
-          difference.push(a[i]);
-      }
-  }
-  return difference;
-};
 
 const CreateQuiz = () => {
   const [instructor, setInstructor] = useState();
@@ -120,33 +111,38 @@ const CreateQuiz = () => {
   };
 
   const handleDone = () => {
-    const updatedQuestions = questionStats.map(question => question._id);
-    const data = {
-      depID: instructor.department,
-      courseID: selectClass.course,
-      createdBy: instructor._id,
-      marks: updatedQuestions.length,
-      questions: updatedQuestions
-    };
+    if(questionStats.length === 0){
+      alert("The Quiz have Zero Questions")
+    }
+    else{
 
-    axios.post(`${backendUrl}/quizes`, data)
+      const updatedQuestions = questionStats.map(question => question._id);
+      const data = {
+        depID: instructor.department,
+        courseID: selectClass.course,
+        createdBy: instructor._id,
+        marks: updatedQuestions.length,
+        questions: updatedQuestions
+      };
+      
+      axios.post(`${backendUrl}/quizes`, data)
       .then((response) => {
         console.log(response.data);
         axios.get(`${backendUrl}/classes/${selectClass._id}`)
-          .then((res)=>{
-            res.data.quizList.push(response.data._id)
-            console.log(res.data)
-            axios.put(`${backendUrl}/classes/${selectClass._id}`, res.data)
-            .then((response)=>{
-              if (response==='ok')
-                alert("Quiz Created Succesfully!")
-            })
-
-          })
+        .then((res)=>{
+          res.data.quizList.push(response.data._id)
+          console.log(res.data)
+          axios.put(`${backendUrl}/classes/${selectClass._id}`, res.data)
+          .then((response)=>{
+            if (response==='ok')
+            alert("Quiz Created Succesfully!")
+          })  
+        })
       })
       .catch((error) => {
         console.log(error);
       });
+    }
   };
 
 

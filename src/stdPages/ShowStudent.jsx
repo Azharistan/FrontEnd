@@ -27,33 +27,19 @@ const ShowStudent = () => {
     }
     }, [])
     return (
-      <div className='Show-ContainerStd'>
-        <h1 className='Show-HeaderSTD'>Show Student</h1>
-        <div className='Show-UnderlineSTD'></div>
-        
-          <div className='Show-inputsStd'>
-            <div className='Show-inputStd'>
+      <div className='Show-ContainerIns'>
+        <h1>Show Student</h1>
+        <div className='Show-UnderlineIns'></div>
               <p>Reg no:  </p>
               <span>{students._id}</span>
-            </div>
-            <div className='Show-inputStd'>
               <p >Name: </p>
               <span>{students.name}</span>
-            </div>
-            <div className='Show-inputStd'>
               <p >Semester: </p>
               <span>{students.semester}</span>
-            </div>
-            <div className='Show-inputStd'>
               <p >Email: </p>
               <span>{students.email}</span>
-            </div>
-            <div className='Show-inputStd'>
               <p >Whatsapp: </p>
               <span>{students.whatsapp}</span>
-            </div>
-          </div>
-        
       </div>
   )
 }

@@ -6,7 +6,7 @@ import { AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 import "./stdStyle/Home.css"
-const Home = () => {
+const StdHome = () => {
 
   const [students, setStudents] = useState([])
   const [loading, setLoading] = useState(false)
@@ -86,4 +86,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default StdHome

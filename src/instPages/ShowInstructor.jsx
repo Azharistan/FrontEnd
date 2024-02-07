@@ -39,28 +39,20 @@ const ShowInstuctor = () => {
   
     return (
       <div className='Show-ContainerIns'>
-        <h1 className='Show-HeaderIns'>Details</h1>
+        <h1>Details</h1>
         <div className='Show-UnderlineIns'></div>
         
         <form className='Show-inputsIns'>
               <p>Prof ID:  </p>
               <span>{instructors._id}</span>
-           
               <p >Name: </p>
               <span>{instructors.name}</span>
-           
-           
               <p >Department: </p>
               <span>{dep ? dep : instructors.department}</span>
-           
-           
               <p >Email: </p>
               <span>{instructors.email}</span>
-           
-           
               <p >Whatsapp: </p>
               <span>{instructors.whatsapp}</span>
-           
           </form>
       </div>
   )
