@@ -50,9 +50,9 @@ const StdPage=() => {
                 Join Class
             </Link>
         
-        <a href="" className="InsButton">
-            View Results
-        </a>
+            <Link to = {std? `/ViewResults`: '/StdPage'} className="Stubutton">      
+                Results
+            </Link>
         <Link to = {std? `/JoinedClasses`: '/StdPage'} className="Stubutton">      
             Classes
         </Link>

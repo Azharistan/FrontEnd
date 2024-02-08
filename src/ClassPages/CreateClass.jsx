@@ -75,15 +75,15 @@ function CreateClass(){
     return instructor.department == c.depID
   }
   return (
-    <>
-  <div className='class-container'>
-    <div className='class-header'>
+  <div className='Create-containerStd'>
+    <div className='headerStd'>
       <h1> Create Class</h1>
-      <div className='class-underline'></div>
+      <div className='underlineStd'></div>
     </div>
-    <form className='class-inputs'>
-      <label>Select Course:</label>
-        <div className='Course-Button'>
+    <div className='inputsStd'>
+      
+        <div className='Class-Button'>
+        <h3>Select Course:</h3>
           <select onChange={(e) => setCourseID(e.target.value)}>
             <option  className='' value='0' defaultChecked >
             Choose a course
@@ -97,12 +97,13 @@ function CreateClass(){
               ))}
           </select>
         </div>
+        <div className='inputStd'>
         <input className="class-attributes" placeholder='Section' type='number' value={section} onChange={(e) => setSection(e.target.value)}/>
-        
+        </div>
       <button className='class-submit' onClick={handleSaveClass}>Save</button>
-    </form>
+    </div>
   </div>
-    </>
+ 
   )
 }
 

@@ -6,6 +6,7 @@ import person_icon from '../assets/person.png';
 import password_icon from '../assets/password.png';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 function LogIn(){
     const [_id, setID] = useState('');
     const [loading, setLoading] = useState(false);
@@ -116,6 +117,11 @@ const handleKeyPress = (e) => {
         </div>
         </form>
         <div className='forgot-password'>Forgot Password? <span>Click Here</span></div>
+        <div className='forgot-password'>
+        <Link to="/signup" className='forgot-password' >
+          create new account
+        </Link>
+        </div>
         <div className='submit-container'>
             <button className="submit" onClick={ handleLogin}>Login</button>
         </div>

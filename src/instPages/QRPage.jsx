@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import {QRCodeSVG} from 'qrcode.react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import "./QuizStyle/QRpage.css"
 
 const QRPage = () => {
 
@@ -28,17 +29,20 @@ const QRPage = () => {
         )
     },[])
     return (
-        <div>
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <div>
-              <QRCodeSVG height={'100%'} value={link} />
+      <div className="container">
+        {loading ? (
+          <p className="loadingMessage">Loading...</p>
+        ) : (
+          <div className="QRCodeContainer">
+            <QRCodeSVG className="QRCodeSVG" height={'100%'} value={link} />
+            <div className="linkContainer">
               <p>Or Click on the following link: <a href={link}>Link</a></p>
             </div>
-          )}
-        </div>
-      );
+          </div>
+        )}
+        { /* Add logic to display alert messages as needed */ }
+      </div>
+    );
       
 }
 

@@ -71,64 +71,43 @@ const CreateInstructor = () => {
   };
 
   return (
-    <div>
-      <div className="Create-containerStd">
-        <div className="headerStd">
-          <div className="textStd">Instructor Registration</div>
-          <div className="underlineStd"></div>
+    <div className='Create-containerStd'>
+    <div className='headerStd'>
+      <div className='textStd'> Instructor Registration</div>
+      <div className='underlineStd'></div>
+    </div>
+      <div className='inputsStd' >
+        <div className='inputStd'>
+          <input placeholder='ProfID' type='text' value={ _id.toUpperCase()} onChange={(e) => set_id(e.target.value)}/>
         </div>
-        <div className="inputsStd">
-          <div className="inputStd">
-            <input placeholder="ProfID" type="text" value={_id.toUpperCase()} onChange={(e) => set_id(e.target.value)} />
-          </div>
-          <div className="inputStd">
-            <input placeholder="Name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-          </div>
-          <label>Select Department:</label>
-          <div className="Course-Button">
-            <select onChange={(e) => setDepartment(e.target.value)}>
-              <option className="" value="0" defaultChecked disabled>
-                Choose a department
-              </option>
-              {departments.map((dep) => (
-                <option onChange={(e) => setDepartment(e.target.value)} key={dep._id} value={dep._id}>
-                  {dep.name}
-                </option>
+        <div className='inputStd'>
+          <input placeholder='Name' type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+        </div>
+        
+        
+        <div className='inputStd'>
+          <input placeholder='WhatsApp' type='text' value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)}/>
+        </div>
+        <div  className='inputStd'>
+          <input placeholder='Email' type='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+        </div>
+        <div  className='inputStd'>
+          <input placeholder='Password' type='password' value={password} onChange={(e) => setPassword((e.target.value))}/>
+        </div>
+        <div className='Department-Button'>
+        <h3>Select Department:</h3>
+          <select onChange={(e) => setDepartment(e.target.value)}>
+            <option  className='' value='0' defaultChecked disabled>
+            Choose a department
+            </option>
+            {departments.map((dep) => (
+              <option onChange={(e) => setDepartment(e.target.value)} key={dep._id} value={dep._id}>
+                {dep.name}
+              </option>                
               ))}
-            </select>
-          </div>
-          <div className="inputStd">
-  <label>Select Country Code:</label>
-  <Select
-    options={[
-      { value: '1', label: '+1 (United States)' },
-      { value: '44', label: '+44 (United Kingdom)' },
-      // Add more countries as needed
-    ]}
-    value={selectedCountry}
-    onChange={(selectedOption) => setSelectedCountry(selectedOption)}
-  />
-</div>
-<div className="inputStd">
-  <input
-    placeholder="WhatsApp"
-    type="tel" // Set the type to "tel" to allow only numeric input
-    pattern="[0-9]*" // Use the pattern attribute to enforce numeric input
-    value={whatsapp}
-    onChange={(e) => setWhatsapp(e.target.value)}
-  />
-</div>
-  
-          <div className="inputStd">
-            <input placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className="inputStd">
-            <input placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <button className="submitStd" onClick={handleSaveInstructor}>
-            Save
-          </button>
+          </select>
         </div>
+        <button className='submitStd' onClick={handleSaveInstructor}>Save</button>
       </div>
     </div>
   );

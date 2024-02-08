@@ -59,30 +59,19 @@ const EditClass = () => {
       });
   }
   return (
-    <div className='Class-container-Edit'>
-      <BackButton/>
+    <div className='Edit-ContainerSTD'>
       {loading ? <Spinner/>: ''}
-      <div className='Class-header-Edit'>
-      <h1 className='Class-text-Edit'>Edit Class</h1>
-      <div className='underlineEdit'></div>
+      <div className='Edit-HeaderSTD'>
+      <h1 className='Edit-TextSTD'>Edit Class</h1>
+      <div className='Edit-UnderlineSTD'></div>
       </div>
-      <form className='class-inputs-edit'>
-        
-          <label>_ID</label>
-          <input className='class-attributes-edit' type='text' value={_id} onChange={(e) => set_id(e.target.value)}/>
-
-          <label>Class ID</label>
-          <input className='class-attributes-edit' type='text' value={name} onChange={(e) => setClassID(e.target.value)}/>
-        
-          <label>Department ID</label>
-          <input className='class-attributes-edit' type='text' value={depID} onChange={(e) => setDepID(e.target.value)}/>
-
-          <label>Section</label>
-          <input className='class-attributes-edit' type='text' value={section} onChange={(e) => setSection(e.target.value)}/>
-        
-          <label>instructor</label>
-          <input className='class-attributes-edit' type='text' value={instuctor} onChange={(e) => setInstructor(e.target.value)}/>
-        <button className='submit-edit' onClick={handleEditClass}>Save</button>
+      <form className='Edit-InputsSTD'>
+          <input className='Edit-Attributes-STD' type='text' value={_id} onChange={(e) => set_id(e.target.value)}/>
+          <input className='Edit-Attributes-STD' type='text' value={name} onChange={(e) => setClassID(e.target.value)}/>
+          <input className='Edit-Attributes-STD' type='text' value={depID} onChange={(e) => setDepID(e.target.value)}/>
+          <input className='Edit-Attributes-STD' type='text' value={section} onChange={(e) => setSection(e.target.value)}/>
+          <input className='Edit-Attributes-STD' type='text' value={instuctor} onChange={(e) => setInstructor(e.target.value)}/>
+        <button className='Edit-SubmitButton' onClick={handleEditClass}>Save</button>
       </form>
     </div>
   )

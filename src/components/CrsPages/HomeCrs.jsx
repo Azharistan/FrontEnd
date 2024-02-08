@@ -27,8 +27,8 @@ const HomeCrs = () => {
   }, [])
   return (
     <div className='STD-Container'>
-      <div className='flex justify-between items-center'>
-        <h1 className='text-3xl my-8'>Course List</h1>
+      <div>
+        <h1>Course List</h1>
         <div className='STD-underline'></div>
         <Link to='create'>
           <MdOutlineAddBox className='Add-Button'/>
@@ -38,7 +38,7 @@ const HomeCrs = () => {
         <Spinner />
       ):(
         <table className='table-container'>
-          <thead>
+          <thead className='StdHeadings'>
 
           <tr>
             <th className='Std-No'>No</th>
@@ -55,21 +55,21 @@ const HomeCrs = () => {
               courses.map((course, index)=>(
                 <tr key={course._id} className='h-8'>
 
-                <td className='border border-slate-700 rounded-md text-center'>{index+1}</td>
-                <td className='border border-slate-700 rounded-md text-center '>{course._id}</td>
-                <td className='border border-slate-700 rounded-md text-center '>{course.name}</td>
-                <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{course.depID}</td>
-                <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{course.creditHr}</td>
-                <td className='border border-slate-700 rounded-md text-center '>
-                  <div className='flex justify-center gap-x-4'>
+                <td >{index+1}</td>
+                <td >{course._id}</td>
+                <td >{course.name}</td>
+                <td >{course.depID}</td>
+                <td >{course.creditHr}</td>
+                <td >
+                  <div >
                     <Link to = {`show/${course._id}`}> 
-                      <BsInfoCircle className='text-2xl text-green-800'/>
+                      <BsInfoCircle />
                     </Link>
                     <Link to={`edit/${course._id}`}>
-                      <AiOutlineEdit className='text-2xl text-yellow-600'/>
+                      <AiOutlineEdit />
                     </Link>
                     <Link to={`delete/${course._id}`}>
-                      <MdOutlineDelete className='text-2xl text-red-600'/>
+                      <MdOutlineDelete />
                     </Link>
                   </div>
                 </td>

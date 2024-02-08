@@ -154,6 +154,16 @@ const shuffleArray = (array) => {
         })
       }
     },[answers])
+
+    useEffect(() => {
+      // Reset answer state when a new question arrives
+      if(currentQuestion)
+      setAns({
+        questionID: currentQuestion._id,
+        answer: ""
+      });
+    }, [currentQuestion]); // Trigger effect when currentQuestion changes
+    
     
     return (
       <div>

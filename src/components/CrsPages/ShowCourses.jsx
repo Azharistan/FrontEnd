@@ -25,30 +25,27 @@ const ShowCourses = () => {
       });
     }, [])
     return (
-      <div className='p-4'>
-        <BackButton />
-        <h1 className='text-3xl my-4'>Show Courses</h1>
+      <div className='Show-ContainerIns'>
+   
+        <h1>Course Info</h1>
+        <div className='Show-UnderlineIns'></div>
         {loading ? (
           <Spinner />
         ) : (
-          <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>ID : </span>
-              <span>{courses._id}</span>
-            </div>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>Name : </span>
-              <span>{courses.name}</span>
-            </div>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>Department : </span>
-              <span>{courses.depID}</span>
-            </div>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>Credit Hours : </span>
-              <span>{courses.creditHr}</span>
-            </div>
-          </div>
+          <form className='Show-inputsIns'>
+            
+              <p >ID : </p>
+              {courses._id}
+            
+              <p >Name : </p>
+              {courses.name}
+            
+              <p >Department : </p>
+              {courses.depID}
+            
+              <p >Credit Hours : </p>
+              {courses.creditHr}
+          </form>
         )}
 
       </div>

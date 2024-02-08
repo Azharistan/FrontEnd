@@ -93,28 +93,21 @@ import { useParams } from 'react-router-dom';
   };
 
   return (
-    <div>
-      <BackButton />
+    <div className="Edit-ContainerSTD">
       {loading && <Spinner />}
+      <div className='Edit-HeaderSTD'>
+      <h1 className='Edit-TextSTD'>Edit Courses</h1>
+      <div className='Edit-UnderlineSTD'></div>
+      </div>
+      <form className='Edit-InputsSTD'>
+        
+          <input className='Edit-Attributes-STD' type='text' name='_id' value={course._id} onChange={(e) => handleChange(e)} />
 
-      <h1 className='text-3xl'>Edit Courses</h1>
-      <div>
-        <div>
-          <label>Course ID</label>
-          <input type='text' name='_id' value={course._id} onChange={(e) => handleChange(e)} />
-        </div>
-        <div>
-          <label>Name</label>
-          <input type='text' name='name' value={course.name} onChange={(e) => handleChange(e)} />
-        </div>
-        <div>
-          <label>Department</label>
-          <input type='text' name='depID' value={course.depID} onChange={(e) => handleChange(e)} />
-        </div>
-        <div>
-          <label>Credit Hours</label>
-          <input type='text' name='creditHr' value={course.creditHr} onChange={(e) => handleChange(e)} />
-        </div>
+          <input className='Edit-Attributes-STD' type='text' name='name' value={course.name} onChange={(e) => handleChange(e)} />
+
+          <input className='Edit-Attributes-STD' type='text' name='depID' value={course.depID} onChange={(e) => handleChange(e)} />
+
+          <input className='Edit-Attributes-STD' type='text' name='creditHr' value={course.creditHr} onChange={(e) => handleChange(e)} />
         
         <div>
           {course.topics.map((topic, topicIndex) => (
@@ -137,18 +130,16 @@ import { useParams } from 'react-router-dom';
                   />
                 </div>
               ))}
-              <button type='button' onClick={() => handleAddSubtopic(topicIndex)}>
+              <button  type='button' onClick={() => handleAddSubtopic(topicIndex)}>
                 Add Subtopic
               </button>
             </div>
           ))}
-          <button type='button' onClick={handleAddTopic}>
-            Add Topic
-          </button>
+       
         </div>
 
-        <button onClick={handleEditCourse}>Save</button>
-      </div>
+        <button className='Edit-SubmitButton' onClick={handleEditCourse}>Save</button>
+      </form>
     </div>
   );
 };

@@ -1,20 +1,19 @@
-
-Link{
+Link {
     color: aliceblue;
 }
 
-.Create-containerStd{
+.Create-containerStd {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 2%;
+    margin-top: 1%;
     width: 35%;
     background: white;
     padding-bottom: 1%;
     border-radius: 30px;
 }
 
-.headerStd{
+.headerStd {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,41 +22,41 @@ Link{
     margin-top: 3%;
 }
 
-.textStd{
+.textStd {
     margin-top: 6%;
-    color: #3c009d;
+    color: rgb(46, 46, 46);
     font-size: 35px;
     font-weight: 700;
 }
 
-.underlineStd{
+.underlineStd {
     width: 15%;
-    height:6px;
-    background:#3c009d;
+    height: 6px;
+    background: rgb(95, 95, 95);
     border-radius: 9px;
 }
 
-.inputsStd{
+.inputsStd {
     margin-top: 6%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
-.inputStd{
+.inputStd {
     display: flex;
     align-items: center;
     margin: auto;
-    width:80%;
-    height: 5%;
+    width: 80%;
+    height: 4%;
     background: #eaeaea;
     border-radius: 6px;
 }
 
-.inputStd input{
+.inputStd input {
     padding-left: 3%;
-    height: 40px;
-    width:100%;
+    height: 35px;
+    width: 100%;
     background: transparent;
     border: none;
     outline: none;
@@ -65,24 +64,17 @@ Link{
     font-size: 19px;
 }
 
-.submit-containerStd{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.submitStd{
+.submitStd {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 35%;
     height: 59px;
     gap: 10px;
-    margin: 8% auto;
+    margin: 5% auto;
     color: white;
-    background: #4c00b4;
+    background: rgb(228, 157, 6);
+    border: none;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
@@ -90,3 +82,70 @@ Link{
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    .Create-containerStd {
+        width: 80%;
+    }
+
+    .submitStd {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .Create-containerStd {
+        width: 100%;
+    }
+
+    .textStd {
+        font-size: 28px;
+    }
+
+    .submitStd {
+        width: 70%;
+    }
+}
+.Course-Button {
+    margin-left: -2%;
+}
+
+.Course-Button option {
+    border: none;
+}
+
+.Course-Button select {
+    width: 100%;
+    border-color: rgb(228, 157, 6);
+}
+
+.Department-Button{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.Department-Button select{
+    margin-left: 50%;
+    text-align: center;
+    width: 100%;
+}
+.Department-Button h3{
+    font-size: medium;
+    margin-left: 20%;
+}
+
+.Class-Button{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.Class-Button select{
+    margin-left: 50%;
+    text-align: center;
+    width: 100%;
+}
+.Class-Button h3{
+    font-size: medium;
+    margin-left: 20%;
+}

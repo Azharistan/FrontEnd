@@ -13,6 +13,7 @@ import DeleteStudent from "./stdPages/DeleteStudent";
 import StudentSignUp from "./stdPages/StudentSignUp.jsx";
 import JoinClass from "./stdPages/JoinClass.jsx";
 import AttemptQuiz from "./stdPages/AttemptQuiz.jsx";
+import ViewResults from './stdPages/ViewResults.jsx'
 
 //Instructor Actions
 
@@ -104,6 +105,7 @@ function App() {
         <Route exact path="/students/delete" element={<DeleteStudent/>} />
         <Route exact path="/students/signup" element={<StudentSignUp/>} />
         <Route exact path="/attempt/:id" element={<AttemptQuiz/>} />
+        <Route exact path="/ViewResults" element={<ViewResults/>} />
 
 
         <Route exact path = "/departments" element={<HomeDep/>} />

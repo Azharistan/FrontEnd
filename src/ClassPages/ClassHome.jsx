@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
-import "./ClassStyle/ClassHome.css"
+
 import { AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
@@ -28,10 +28,10 @@ const HomeClass = () => {
       })
   }, [])
   return (
-    <div className='Container'>
+    <div className='STD-Container'>
       <div>
         <h1>Class List</h1>
-        <div className='underline'></div>
+        <div className='STD-underline'></div>
         <Link to='create'>
           <MdOutlineAddBox className='Add-Button'/>
         </Link>
@@ -39,17 +39,17 @@ const HomeClass = () => {
       {loading ? (
         <Spinner />
       ):(
-        <table className='Instable-container'>
-          <thead className='InsHeadings'>
+        <table className='table-container'>
+          <thead className='StdHeadings'>
 
           <tr>
-            <th>No</th>
-            <th>Course Code</th>
-            <th>Class ID</th>
-            <th>Course Name</th>
-            <th>Instructor Name</th>
-            <th>Section</th>
-            <th>Operations</th>
+            <th className='Std-No'>No</th>
+            <th className='Std-No'>Course Code</th>
+            <th className='Std-No'>Class ID</th>
+            <th className='Std-No'>Course Name</th>
+            <th className='Std-No'>Instructor Name</th>
+            <th className='Std-No'>Section</th>
+            <th className='Std-No'>Operations</th>
           </tr>
           </thead>
           <tbody>
@@ -60,6 +60,7 @@ const HomeClass = () => {
                 <td >{index+1}</td>
                 <td >{Class._id}</td>
                 <td>{Class.depID}</td>
+                <td>{Class.className}</td>
                 <td>{Class.instructor}</td>
                 <td>{Class.section}</td>
                 <td>

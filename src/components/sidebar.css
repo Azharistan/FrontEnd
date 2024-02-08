@@ -30,21 +30,12 @@
     width: 100%;
   }
   
-  .logo {
-    object-fit: contain;
-    width: 200px;
-  }
-  
-  .Nav .options {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
   
   .Nav .options ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    list-style: none;
   }
   
   .Nav .options ul li {
@@ -54,9 +45,21 @@
   .Nav .options ul li a {
     text-decoration: none;
     color: #fff;
+    margin-right: 10px; 
+  }
+  
+  .Nav .options ul li:last-child a {
+    margin-right: 0; 
   }
   
   .Nav .options ul li a:hover {
-    color:  rgb(228, 157, 6); 
+    color: rgb(228, 157, 6);
+  }
+
+  .logo {
+    margin-left: 10%;
+    position: relative;
+    object-fit: contain;
+    width: 180px;
   }
   

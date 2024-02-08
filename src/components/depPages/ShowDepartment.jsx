@@ -25,30 +25,25 @@ const ShowDepartment = () => {
       });
     }, [])
     return (
-      <div className='p-4'>
-        <BackButton />
-        <h1 className='text-3xl my-4'>Show Department</h1>
+      <div className='Show-ContainerIns'>
+        <h1 className='textIns'>Show Department</h1>
+        <div className='Show-UnderlineIns'></div>
         {loading ? (
           <Spinner />
         ) : (
-          <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>ID : </span>
-              <span>{departments._id}</span>
-            </div>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>Name : </span>
-              <span>{departments.name}</span>
-            </div>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>Dean : </span>
-              <span>{departments.dean}</span>
-            </div>
-            <div className='my-4'>
-              <span className='text-xl mr-4 text-gray-500'>HOD : </span>
-              <span>{departments.hod}</span>
-            </div>
-          </div>
+          <form className='Show-inputsIns'>
+            
+              <p >ID : </p> {departments._id}
+            
+              <p >Name : </p>
+                {departments.name}
+            
+              <p >Dean : </p>
+                {departments.dean}
+            
+              <p >HOD : </p>
+                {departments.hod}
+          </form>
         )}
 
       </div>

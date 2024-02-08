@@ -33,17 +33,16 @@ const ShowClass = () => {
       setCourse(res.data.name)
     })
     return (
-      <div className='Show-Container-Class'>
-        <BackButton />
-        <h1 className='Show-Header-Class'>Class Details</h1>
-        <div className='Show-Underline-Class'></div>
-          <form className='Show-inputs-Class'>
+      <div className='Show-ContainerIns'>
+        <h1 >Class Details</h1>
+        <div className='Show-UnderlineIns'></div>
+          <form className='Show-inputsIns'>
             
-              <span>Professor : {instructor}</span>
+              <p>Professor :</p> {instructor}
             
-              <p>section : {classes.section}</p>
+              <p>section :</p>  {classes.section}
             
-              <p>course : {course}</p>
+              <p>course :</p> {course}
           </form>
 
       </div>

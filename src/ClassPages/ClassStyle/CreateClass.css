@@ -1,88 +1,117 @@
-
-.class-container{
+.class-container {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 10%;
-    width: 35%;
+    margin-top: 7%; /* Adjusted margin for a more professional look */
+    width: 80%; /* Adjusted container width */
+    max-width: 600px; /* Set a maximum width for larger screens */
     background: white;
-    padding-bottom: 1%;
-    border-radius: 30px;}
 
-.class-header{
+    border-radius: 5%; /* Reduced border-radius for a more subtle look */
+}
+
+.class-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 9px;
     width: 100%;
-    margin-top: 3;
+    margin-top: 3%; /* Adjusted margin for a more professional look */
 }
 
-.class-text{
-    margin-top: 6%;
-    background-color: white;
-    font-size: 35px;
-    font-weight: 700;
-}
-.class-underline{
-    width: 15%;
-    height:6px;
-    background:rgb(95, 95, 95);
+.class-underline {
+    width: 50%;
+    height: 6px;
+    background: rgb(95, 95, 95);
     border-radius: 9px;
-    margin-bottom: 10%;}
+    margin-top: -3%;
+    margin-bottom: 5%; /* Slightly reduced bottom margin for a cleaner look */
+}
 
-.class-inputs{
-    margin-top: 7%;
+.class-inputs {
+    margin-top: 5%; /* Adjusted top margin for a more professional look */
     flex-direction: column;
-    gap: 20px;
+    gap: 15px; /* Slightly reduced gap between inputs */
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin: auto;
-    width:80%;
-    border-radius: 6px;}
+    width: 90%;
+    max-width: 400px;
+    border-radius: 6px;
+}
 
-.class-inputs input{
-    padding-left: 3%;
-    height: 40px;
-    width:100%;
+.class-inputs input {
+    padding: 12px; /* Slightly increased padding for better input appearance */
+    width: 100%;
     border: none;
-    outline: none;
     color: #797979;
-    font-size: 19px;
+    font-size: 16px;
 }
-.class-attributes{
+
+.class-attributes {
     border-radius: 10px;
-    padding-left:50%;
-    background:rgba(213, 213, 213, 0.5);
+    padding: 10px;
+    width: 100%;
+    background: rgba(213, 213, 213, 0.5);
 }
 
-.class-submit-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.class-submit{
+.class-submit {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35%;
+    width: 70%; /* Adjusted width for a more balanced appearance */
+    max-width: 300px;
     height: 59px;
     gap: 10px;
-    margin: 8% auto;
+    margin: 6% auto; /* Adjusted margin for a more professional look */
     color: white;
     background: rgb(228, 157, 6);
     border-radius: 50px;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
     border: none;
 }
 
-.Course-Button{
+.Course-Button {
+    margin-left: -5%;
+}
+
+.Course-Button option {
     border: none;
-    color: #797979;
+}
+
+.Course-Button select {
+    width: 100%;
+    border-color: rgb(228, 157, 6);
+}
+
+@media only screen and (max-width: 768px) {
+    .class-container {
+        width: 90%; 
+    }
+
+    .class-inputs {
+        width: 80%; 
+    }
+
+    .class-submit {
+        width: 90%; 
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .class-container {
+        width: 95%; 
+        margin-top: 12%; 
+    }
+
+    .class-inputs {
+        width: 95%; 
+    }
+
+    .class-submit {
+        width: 95%; 
+    }
 }

@@ -1,45 +1,89 @@
-.STD-Container{
+.STD-Container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: black;
-}
-
-
-.StdHeadings tr th {
-  padding: 2rem; 
+    margin: 0 3%;
 }
 
 .StdHeadings th {
     border-bottom: 1px solid #000;
+    text-align: center; /* Center align the header text */
 }
-.Std-icons{
+.STD-underline{
+    width: 50%;
+    margin: auto;
+    height: 6px;
+    background: rgb(95, 95, 95);
+    border-radius: 2px;
+}
+.Std-icons {
     color: white;
 }
 
-.table-container{
+.table-container {
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.25);
     padding-bottom: 3%;
-}
-td{
-    padding: auto 10px;
+    width: 90%;
+    margin: auto;
 }
 
-.STD-underline{
+tbody td {
+    padding: auto 10px;
+    text-align: center;   
+}
+
+.STD-underline {
     margin-top: -10px;
     margin-bottom: 10px;
     width: 100%;
-    height:6px;
+    height: 6px;
     color: rgba(255, 255, 255, 0.25);
     border-radius: 9px;
 }
+
+.Add-Button {
+    font-size: 50px;
+    margin-left: 34%;
+}
+
+.Add-Button:hover {
+    filter: drop-shadow(0 0 2em #77cdf5aa);
+}
+
+@media (max-width: 600px) {
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .table-container td:nth-child(3),
+    .table-container td:nth-child(5),
+    .table-container th:nth-child(3),
+    .table-container td:nth-child(4),
+    .table-container th:nth-child(4),
+    .table-container td:nth-child(1),
+    .table-container th:nth-child(1),
+    .table-container th:nth-child(5) {
+        display: none;
+    }
+}
+
+
 .Add-Button{
+    color: rgb(228, 157, 6);
     font-size: 50px;
     transition: filter 300ms;
 }
 
 .Add-Button:hover{
-    filter: drop-shadow(0 0 2em #77cdf5aa);
+    color: rgb(141, 99, 9);
+}
+.info{
+    color: rgb(186, 128, 4);
+}
+.info:hover{
+    color: rgb(138, 95, 3);
 }

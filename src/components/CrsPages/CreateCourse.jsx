@@ -76,7 +76,7 @@ const CreateCourse = () => {
         <div className='headerStd'>
           <div className='textStd'> Course Creation</div>
           <div className='underlineStd'></div>
-          <label>Select Department:</label>
+          <h3>Select Department:</h3>
         <div className='Course-Button'>
           <select onChange={(e) => setDepID(e.target.value)}>
             <option  className='' value='0' defaultChecked >

@@ -16,7 +16,7 @@
     align-items: center;
     gap: 9px;
     width: 100%;
-    margin-top: -3%;
+    margin-top: -8%;
 }
   
 .text {
@@ -27,8 +27,8 @@
   
 .underline {
     margin-top:3%;
-    margin-left:-2%;
-    width: 25%;
+    margin-left:-1.8%;
+    width: 35%;
     height: 6px;
     background: rgb(95, 95, 95);
     border-radius: 9px;
@@ -65,11 +65,16 @@
     font-size: 19px;
 }
 
+.input img{
+  margin-left: -2%;
+}
+
 .eye-icon {
     margin-left: 5% ;
     border: none;
     background: transparent;
     color: #797979;
+    cursor: pointer;
 }
 
 .forgot-password {
@@ -78,25 +83,33 @@
     justify-content: center;
     align-items: center;
     padding-left: 10px;
-    margin-top: 27px;
+    padding-top: 2%;
+    margin-bottom: -5%;
     color: #797979;
     font-size: 18px;
 }
   
 .forgot-password span {
-    color: blue;
+    color: rgb(1, 1, 121);
     cursor: pointer;
+}
+.forgot-password a {
+    color: rgb(1, 1, 121);
+    cursor: pointer;
+    text-decoration: none;
 }
   
 .submit-container {
     display: flex;
+   margin-bottom: auto;
+   
 }
   
 .submit {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 220px;
+    width: 250%;
     color: white;
     background: rgb(228, 157, 6);
     border-radius: 50px;

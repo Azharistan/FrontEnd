@@ -57,30 +57,23 @@ const EditDepartment = () => {
       });
   }
   return (
-    <div>
-      <BackButton/>
+    <div className="Edit-ContainerSTD">
       {loading ? <Spinner/>: ''}
-
-      <h1 className='text-3xl'>Edit Department</h1>
-      <div>
-        <div>
-          <label>Department ID</label>
-          <input type='text' value={_id} onChange={(e) => set_id(e.target.value)}/>
-        </div>
-        <div>
-          <label>Name</label>
-          <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
-        </div>
-        <div>
-          <label>Dean</label>
-          <input type='text' value={dean} onChange={(e) => setDean(e.target.value)}/>
-        </div>
-        <div>
-          <label>H.O.D</label>
-          <input type='text' value={hod} onChange={(e) => setHOD(e.target.value)}/>
-        </div>
-        <button onClick={handleEditDepartment}>Save</button>
+      <div className='Edit-HeaderSTD'>
+      <h1 className='Edit-TextSTD'>Edit Department</h1>
+      <div className='Edit-UnderlineSTD'></div>
       </div>
+        <form className='Edit-InputsSTD'>
+       
+          <input className='Edit-Attributes-STD' type='text' value={_id} onChange={(e) => set_id(e.target.value)}/>
+       
+          <input className='Edit-Attributes-STD' type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+       
+          <input className='Edit-Attributes-STD' type='text' value={dean} onChange={(e) => setDean(e.target.value)}/>
+       
+          <input className='Edit-Attributes-STD' type='text' value={hod} onChange={(e) => setHOD(e.target.value)}/>
+        <button className='Edit-SubmitButton' onClick={handleEditDepartment}>Save</button>
+      </form>
     </div>
   )
 }
