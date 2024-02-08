@@ -174,7 +174,8 @@ function handleCheck(d){
                 <td>
                   <div>
                     <button onClick={()=>{
-                      setClass_ID(detailedClass)
+                      localStorage.setItem("class", detailedClass._id)
+                      window.location.href = ("/ViewResults")
                       }}>Results</button>
                   </div>
                 </td>

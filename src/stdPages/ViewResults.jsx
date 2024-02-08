@@ -167,10 +167,10 @@ const ViewResults=() => {
                         <table>
                           <thead>
                             <tr>
-                              <td>no.</td>
-                              <td>statement</td>
-                              <td>Correct answer</td>
-                              <td>Given answer</td>
+                              <th>no.</th>
+                              <th>statement</th>
+                              <th>Correct answer</th>
+                              <th>Given answer</th>
                             </tr>
                           </thead>
                           <tbody>

@@ -3,8 +3,8 @@ import axios from 'axios';
 const Request = () => {
 
   const [approval, setApproval] = useState([])
-    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
-    const [run, setRun] = useState(false)
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+  const [run, setRun] = useState(false)
   var from
   var section
   var detail
@@ -124,6 +124,7 @@ const Request = () => {
   useEffect(()=>{
     if(user){
 
+      console.log(user)
       axios
       .get(`${backendUrl}/approvals/byuser/${user._id}`)
       .then((response) =>{ 
@@ -134,7 +135,7 @@ const Request = () => {
         console.log(error);
       })
     }
-  }, [run])
+  }, [run, user])
   return (
     <div className='STD-Container'>
       <div>
