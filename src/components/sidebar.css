@@ -5,7 +5,12 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+  .SignInLogin{
+    background: #15171c;
+    color: #fff;
+    border: none;
+    margin: 0 20px;
+  }
   .NavIcon {
     margin-left: 2rem;
     font-size: 2rem;
@@ -52,7 +57,7 @@
     margin-right: 0; 
   }
   
-  .Nav .options ul li a:hover {
+  .Nav .options ul li button:hover {
     color: rgb(228, 157, 6);
   }
 

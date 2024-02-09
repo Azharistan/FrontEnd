@@ -36,10 +36,14 @@ return (
 				<a href="/">
 					<img className="logo" src={mylogo} />
 				</a>
-			<div className="options">
+				<div className="options">
 				<ul>
-					<li><a href="/signup">Sign Up</a></li>
-					<li><a href="/login">Log In</a></li>
+					<li><button className="SignInLogin" onClick={()=>{
+						location.href= "/signup"
+					}}>Sign Up</button></li>
+					<li><button className="SignInLogin" onClick={()=>{
+						location.href= "/login"
+					}}>Log In</button></li>
 				</ul>
 			</div>
 		</Nav>

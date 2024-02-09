@@ -68,8 +68,10 @@ import { Events } from "./pages/Events";
 import Contact from "./pages/ContactUs";
 import Support from "./pages/Support";
 import Home from "./components/Home.jsx";
-
-
+import AdminEditStudent from "./components/AdminEditStd.jsx";
+import AdminShowStudent from "./components/AdminShowStd.jsx";
+import AdminShowInstuctor from "./components/AdminShowIns.jsx";
+import AdminEditInstuctor from "./components/AdminEditIns.jsx"
 function App() {
   return (
     <div>
@@ -95,17 +97,22 @@ function App() {
         <Route exact path="/instructors/create" element = {<CreateInstructor />}/>
         <Route exact path="/instructors/info" element = {<ShowInstuctor />}/>
         <Route exact path="/instructors/edit" element = {<EditInstuctor />}/>
-        <Route exact path="/instructors/delete" element = {<DeleteInstuctor />}/>
+        <Route exact path="/instructors/delete/:id" element = {<DeleteInstuctor />}/>
+        <Route exact path="/instructors/edit/:id" element = {<AdminEditInstuctor />}/>
+        <Route exact path="/instructors/show/:id" element = {<AdminShowInstuctor />}/>
 
 
         <Route exact path="/students" element={<StdHome/>} />
         <Route exact path="/students/create" element={<CreateStudent/>} />
         <Route exact path="/students/info" element={<ShowStudent/>} />
         <Route exact path="/students/edit" element={<EditStudent/>} />
-        <Route exact path="/students/delete" element={<DeleteStudent/>} />
+        <Route exact path="/students/delete/:id" element={<DeleteStudent/>} />
         <Route exact path="/students/signup" element={<StudentSignUp/>} />
         <Route exact path="/attempt/:id" element={<AttemptQuiz/>} />
         <Route exact path="/ViewResults" element={<ViewResults/>} />
+        
+        <Route exact path="/students/show/:id" element={<AdminShowStudent/>} />
+        <Route exact path="/students/edit/:id" element={<AdminEditStudent/>} />
 
 
         <Route exact path = "/departments" element={<HomeDep/>} />
