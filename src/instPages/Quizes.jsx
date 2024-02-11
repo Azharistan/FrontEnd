@@ -101,7 +101,7 @@ const Quiz = () => {
       axios.post(`${backendUrl}/quizes/publishQuiz/${quizes}`)
       .then((response)=>{
         console.log(response.data)
-        window.location.href = (`/Qrpage/${response.data.quizes._id}`);
+        window.location.href = (`/Qrpage/${response.data.quiz._id}`);
         setClicked(!clicked)
       }).catch((error)=>{
         console.log(error)

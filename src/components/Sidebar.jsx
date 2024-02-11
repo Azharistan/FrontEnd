@@ -38,12 +38,26 @@ return (
 				</a>
 				<div className="options">
 				<ul>
-					<li><button className="SignInLogin" onClick={()=>{
-						location.href= "/signup"
-					}}>Sign Up</button></li>
-					<li><button className="SignInLogin" onClick={()=>{
-						location.href= "/login"
-					}}>Log In</button></li>
+				{localStorage.getItem('token')? (
+					<>
+						<li><button className="SignInLogin" onClick={()=>{
+							location.href= "/login"
+						}}>Home</button></li>
+						<li><button className="SignInLogin" onClick={()=>{
+							location.href= "/login"
+						}}>Logout</button></li>
+					</>
+						):(
+					<>
+						<li><button className="SignInLogin" onClick={()=>{
+							location.href= "/signup"
+						}}>Sign Up</button></li>
+						<li><button className="SignInLogin" onClick={()=>{
+							location.href= "/login"
+						}}>Log In</button></li>
+					</>
+					)}
+					
 				</ul>
 			</div>
 		</Nav>

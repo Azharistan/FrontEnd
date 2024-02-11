@@ -10,13 +10,15 @@
     color: #fff;
     border: none;
     margin: 0 20px;
+    font-weight: 300;
+    font-size:medium;
   }
   .NavIcon {
     margin-left: 2rem;
     font-size: 2rem;
     height: 80px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
   }
   

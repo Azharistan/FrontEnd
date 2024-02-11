@@ -47,6 +47,25 @@
     border-radius: 6px;
     
 }
+.topicBox{
+    border: rgb(105, 104, 104) solid 1px;
+    margin: 5px 0px 30px 0px;
+    padding: 5px;
+    gap: 5px
+}
+.topicBox label{
+    font-size: x-large;
+    display: flex;
+    float: left;
+    position: absolute;
+    translate: 0 -110%;
+    background-color: white;
+}
+.topicBox input{
+    margin: 15px 0px;
+    width: 10%;
+    display: inline;
+}
 .Edit-Attributes-STD{
     border-radius: 20px;
     padding-left:50%;

@@ -63,7 +63,9 @@ import { useParams } from 'react-router-dom';
   //   }));
   // };
 
-  const handleAddTopic = () => {
+  const handleAddTopic = (e) => {
+    e.preventDefault()
+    console.log(course)
     setCourse((prevCourse) => ({
       ...prevCourse,
       topics: [...prevCourse.topics, { name: '', subTopics: [''] }],
@@ -89,6 +91,9 @@ import { useParams } from 'react-router-dom';
   const handleEditCourse = () => {
     setLoading(true);
     console.log(course)
+    const topics = {
+      name: ()=>{course.topics.filter((topic)=>{topic.name === ""})}
+    }
     axios.put(`${backendUrl}/courses/${course._id}`, course)
   };
 
@@ -109,34 +114,48 @@ import { useParams } from 'react-router-dom';
 
           <input className='Edit-Attributes-STD' type='text' name='creditHr' value={course.creditHr} onChange={(e) => handleChange(e)} />
         
-        <div>
-          {course.topics.map((topic, topicIndex) => (
-            <div key={topicIndex}>
-              <label>{`Topic ${topicIndex + 1}`}</label>
-              <input
-                type='text'
-                name='name'
-                value={topic.name}
-                onChange={(e) => handleChange(e, topicIndex)}
+          <div>
+      {/* Render existing topics and subtopics */}
+      {course.topics.map((topic, topicIndex) => (
+        <div key={topicIndex} className='topicBox'>
+        <label>Topic {topicIndex+1}</label>
+          <input className='Edit-Attributes-STD'
+            type="text"
+            value={topic.name}
+            onChange={e => {
+              const value = e.target.value;
+              setCourse(prevState => {
+                const updatedTopics = [...prevState.topics];
+                updatedTopics[topicIndex].name = value;
+                return { ...prevState, topics: updatedTopics };
+              });
+            }}
+          />
+          <button className='topicButton' onClick={(e) => 
+          {e.preventDefault()
+          handleAddSubtopic(topicIndex)}}>Add Subtopic</button>
+          {/* Render existing subtopics */}
+          {topic.subTopics.map((subtopic, subtopicIndex) => (
+            <div key={subtopicIndex}>
+              <input className='Edit-Attributes-STD'
+                type="text"
+                value={subtopic}
+                onChange={e => {
+                  const value = e.target.value;
+                  setCourse(prevState => {
+                    const updatedTopics = [...prevState.topics];
+                    updatedTopics[topicIndex].subTopics[subtopicIndex] = value;
+                    return { ...prevState, topics: updatedTopics };
+                  });
+                }}
               />
-              {topic.subTopics.map((subtopic, subtopicIndex) => (
-                <div key={subtopicIndex}>
-                  <label>{`Subtopic ${subtopicIndex + 1}`}</label>
-                  <input
-                    type='text'
-                    name='subtopic'
-                    value={subtopic}
-                    onChange={(e) => handleChange(e, topicIndex, subtopicIndex)}
-                  />
-                </div>
-              ))}
-              <button  type='button' onClick={() => handleAddSubtopic(topicIndex)}>
-                Add Subtopic
-              </button>
             </div>
           ))}
-       
         </div>
+      ))}
+      <button className='topicButton' onClick={(e)=>{
+        handleAddTopic(e)}}>Add Topic</button>
+    </div>
 
         <button className='Edit-SubmitButton' onClick={handleEditCourse}>Save</button>
       </form>
