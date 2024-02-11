@@ -9,24 +9,54 @@ import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 const HomeClass = () => {
   const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
+  const [detailedClass, setDetails] = useState([])
   const [classs, setClasss] = useState([])
   const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
-    setLoading(true);
+    setLoading(true)
     axios
       .get(`${backendUrl}/classes`)
-      .then((response) =>{ 
-        console.log(response.data)
-        setClasss(response.data.class1)
-        console.log(response.data.class1)
-        setLoading(false);
+      .then((response) =>{
+        fetchClassDetails(response.data.class1)
+        setLoading(false)
       })
       .catch((error)=>{
         console.log(error);
         setLoading(false)
       })
   }, [])
+
+  const fetchClassDetails = (classs)=>{
+    const promises = classs.map((Class) => {
+      const coursePromise = axios.get(`${backendUrl}/courses/${Class.courseID}`)
+      const instructorPromise = axios.get(`${backendUrl}/instructors/${Class.instructor}`)
+      return Promise.all([coursePromise,instructorPromise])
+      .then((responses)=>{
+        const [courseResponse, instructorResponse] = responses
+        return {
+          _id: Class._id,
+          courseName: courseResponse.data.name,
+          course: courseResponse.data._id,
+          instructorName: instructorResponse.data.name,
+          instructor: instructorResponse.data._id,
+          section: Class.section,
+          stdList: Class.stdList
+        }
+      }).catch((error)=>{
+        console.log(error)
+      })
+    })
+
+    Promise.all(promises)
+    .then((detailedClass) => {
+      setDetails(detailedClass.filter(Boolean))
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   return (
     <div className='STD-Container'>
       <div>
@@ -54,14 +84,14 @@ const HomeClass = () => {
           </thead>
           <tbody>
             {
-              classs.map((Class, index)=>(
+              detailedClass.map((Class, index)=>(
                 <tr key={Class._id} className='h-8'>
 
                 <td >{index+1}</td>
-                <td >{Class._id}</td>
-                <td>{Class.depID}</td>
-                <td>{Class.className}</td>
-                <td>{Class.instructor}</td>
+                <td >{Class.course}</td>
+                <td>{Class._id}</td>
+                <td>{Class.courseName}</td>
+                <td>{Class.instructorName}</td>
                 <td>{Class.section}</td>
                 <td>
                   <div>

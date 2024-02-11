@@ -8,12 +8,11 @@ import "./ClassStyle/ClassEdit.css"
 const EditClass = () => {
 
   const [_id, set_id] = useState('');
-  const [classID, setClassID] = useState('');
-  const [depID, setDepID] = useState('');
-  const [instuctor, setInstructor] = useState('');
-  const [section, setSection] = useState([]);
-    const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
-    const [loading, setLoading] = useState('');
+  const [courseID, setCourseID] = useState('');
+  const [section, setSection] = useState('');
+  const [instructor, setInstructor] = useState('');
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const {id} = useParams();
@@ -21,10 +20,11 @@ const EditClass = () => {
     setLoading(true)
     axios.get(`${backendUrl}/classes/${id}`)
     .then((response)=>{
+      console.log(response.data)
       set_id(response.data._id);
-      setClassID(response.data.classID)
-      setDepID(response.data.depID)
-      setInstructor(response.data.instuctor)
+      setCourseID(response.data.courseID)
+      setInstructor(response.data.instructor)
+      setSection(response.data.section)
       setLoading(false)
     }).catch((error)=>{
       setLoading(false)
@@ -33,17 +33,11 @@ const EditClass = () => {
     })
   }, []) 
   const handleEditClass = () =>{
-    console.log("_id",_id )
-    console.log("classID",classID )
-    console.log("dean",depID )
-    console.log("instructor",instuctor )
-
-
     const data = {
       _id,
-      classID,
-      depID,
-      instuctor
+      courseID,
+      section,
+      instructor
     };
     setLoading(true);
     axios
@@ -60,19 +54,21 @@ const EditClass = () => {
   }
   return (
     <div className='Edit-ContainerSTD'>
-      {loading ? <Spinner/>: ''}
+      {loading ? <Spinner/>: (
+        <>
       <div className='Edit-HeaderSTD'>
       <h1 className='Edit-TextSTD'>Edit Class</h1>
       <div className='Edit-UnderlineSTD'></div>
       </div>
       <form className='Edit-InputsSTD'>
           <input className='Edit-Attributes-STD' type='text' value={_id} onChange={(e) => set_id(e.target.value)}/>
-          <input className='Edit-Attributes-STD' type='text' value={name} onChange={(e) => setClassID(e.target.value)}/>
-          <input className='Edit-Attributes-STD' type='text' value={depID} onChange={(e) => setDepID(e.target.value)}/>
+          <input className='Edit-Attributes-STD' type='text' value={courseID} onChange={(e) => setCourseID(e.target.value)}/>
           <input className='Edit-Attributes-STD' type='text' value={section} onChange={(e) => setSection(e.target.value)}/>
-          <input className='Edit-Attributes-STD' type='text' value={instuctor} onChange={(e) => setInstructor(e.target.value)}/>
+          <input className='Edit-Attributes-STD' type='text' value={instructor} onChange={(e) => setInstructor(e.target.value)}/>
         <button className='Edit-SubmitButton' onClick={handleEditClass}>Save</button>
       </form>
+      </>
+      )}
     </div>
   )
 }

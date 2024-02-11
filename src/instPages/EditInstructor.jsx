@@ -80,15 +80,15 @@ const EditInstuctor = () => {
       <div className='Edit-UnderlineSTD'></div>
       </div>
       <form className='Edit-InputsSTD'>
- 
-          <input className='Edit-Attributes-STD' type='text' value={_id} onChange={(e) => set_id(e.target.value)}/>
-
+          <label>ID</label>
+          <input className='Edit-Attributes-STD' type='text' value={_id} disabled onChange={(e) => set_id(e.target.value)}/>
+          <label>Name</label>
           <input className='Edit-Attributes-STD' type='text' value={name} onChange={(e) => setName(e.target.value)}/>
- 
-          <input className='Edit-Attributes-STD' type='text' value={department} onChange={(e) => setDepartment(e.target.value)}/>
- 
+          <label>Department</label>
+          <input className='Edit-Attributes-STD' type='text' value={department} disabled onChange={(e) => setDepartment(e.target.value)}/>
+          <label>WhatsApp</label>
           <input className='Edit-Attributes-STD' type='text' value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)}/>
- 
+          <label>Email</label>
           <input className='Edit-Attributes-STD' type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
         
         <button className='Edit-SubmitButton' onClick={handleEditInstuctor}>Save</button>

@@ -72,6 +72,8 @@ import AdminEditStudent from "./components/AdminEditStd.jsx";
 import AdminShowStudent from "./components/AdminShowStd.jsx";
 import AdminShowInstuctor from "./components/AdminShowIns.jsx";
 import AdminEditInstuctor from "./components/AdminEditIns.jsx"
+
+import Session from "./components/Session.jsx";
 function App() {
   return (
     <div>
@@ -79,7 +81,10 @@ function App() {
       <Sidebar />
 
       <Routes>
+
       <Route exact path="/" element={<Home/>} />
+        
+        <Route path='/session' element={<Session/>} />
         <Route path='/about-us' element={<AboutUs/>} />
         <Route path='/about-us/aim' element={<OurAim/>} />
         <Route path='/about-us/vision' element={<OurVision/>} />

@@ -1,8 +1,14 @@
+import './spinner.css'
+
 const Spinner = () => {
   return (
-    <div className='animation-ping w-16 h-16 m-8 rounded-full bg-sky-600'>
-      
-    </div>
+    <div className="spinner">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
   )
 }
 

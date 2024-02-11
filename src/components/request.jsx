@@ -5,6 +5,7 @@ const Request = () => {
   const [approval, setApproval] = useState([])
   const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
   const [run, setRun] = useState(false)
+  const [loading, setLoading] = useState(false)
   var from
   var section
   var detail
@@ -17,9 +18,11 @@ const Request = () => {
         token
     }
     useEffect(()=>{
+      setLoading(true)
         if(!token){
             alert('You are not logged in')
             window.location.href = ('/')
+            setLoading(false)
         }else{
             axios.post(`${backendUrl}/api/token`, data)
             .then((response)=>{
@@ -29,6 +32,7 @@ const Request = () => {
                   else if(response.data.instructor)
                     setUser(response.data.instructor)
                   else console.log("no user")
+                  setLoading(false)
                 }
             }).catch((error)=>{
                 console.log(error)
@@ -36,7 +40,9 @@ const Request = () => {
         }
     },[])
 
-  const handleDelete = () =>{
+  const handleDelete = (e) =>{
+    e.preventDefault()
+    setLoading(true)
     const apprv = {
     from,
     detail, 
@@ -50,7 +56,7 @@ const Request = () => {
         axios.delete(`${backendUrl}/approvals/${response.data.ID}`)
         .then(()=>{
             console.log('deleted')
-            window.location.href = ('/request')
+            setRun(prev => {!prev})
         }).catch((error)=>{
             console.log(error)
         })
@@ -59,8 +65,8 @@ const Request = () => {
   }
 
 
-  const handleAccept =()=>{
-    event.preventDefault()
+  const handleAccept =(e)=>{
+    e.preventDefault()
     if(from.includes('PROF')){
       const instructor = from
       const data = {
@@ -81,7 +87,7 @@ const Request = () => {
           axios.post(`${backendUrl}/api/request`, apprv)
           .then((response)=>{
             console.log(response.data.ID)
-            handleDelete()
+            handleDelete(e)
           })
         }).catch((error)=>{
           console.log(error);
@@ -124,7 +130,7 @@ const Request = () => {
   useEffect(()=>{
     if(user){
 
-      console.log(user)
+      console.log("run ", run)
       axios
       .get(`${backendUrl}/approvals/byuser/${user._id}`)
       .then((response) =>{ 
@@ -167,13 +173,13 @@ const Request = () => {
                 <td>{app.section}</td>
                 <td>
                   <div>
-                  <button onClick={()=>{
+                  <button onClick={(e)=>{
                     from = (app.from)
                     courseID = (app.courseID)
                     detail = (app.detail) 
                     section = (app.section)
                     to= app.to
-                    handleAccept()
+                    handleAccept(e)
                   }}>accept</button>
 
                   <button onClick={(event)=>{

@@ -7,6 +7,7 @@ const InsClasses = () => {
     const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const [show, setShow] = useState(false);
   const [ss, setSs] = useState({})
+  const [stdList, setStdList] = useState([])
   const [instructor, setInstructor] = useState()
         var token = localStorage.getItem('token')
         const data = {
@@ -57,11 +58,15 @@ const InsClasses = () => {
         const [courseResponse] = responses
         return {
           _id: Class._id,
-          courseName: courseResponse.data.name,
-          course: courseResponse.data._id,
-          section: Class.section,
           stdList: Class.stdList,
-          topics: courseResponse.data.topics
+          quizList: Class.quizList,
+          course: courseResponse.data._id,
+          instructor: Class.instructor,
+          section: Class.section,
+          courseName: courseResponse.data.name,
+          topics: courseResponse.data.topics,
+
+
         }
       }).catch((error)=>{
         console.log(error)
@@ -82,6 +87,39 @@ const InsClasses = () => {
 
     localStorage.setItem("class", st)
     window.location.href = ('/question')
+  }
+
+  useEffect(()=>{
+    if(ss){
+
+      axios.get(`${backendUrl}/classes/getStudents/${ss._id}`)
+      .then((response)=>{
+        console.log(response.data)
+        setStdList(response.data.stdList)
+      })
+    }
+    
+
+  }, [ss])
+
+  const  newStd = async(id)=>{
+    const stdll = await stdList.filter(std => {
+        std._id === id._id})
+    const course = {
+      _id: ss._id,
+      instructor: ss.instructor,
+      stdList: stdll,
+      quizList: ss.quizList,
+      courseID: ss.courseID,
+      section: ss.section
+      
+    }
+    setStdList(stdll)
+    axios.put(`${backendUrl}/classes/${ss._id}`, course)
+    .then((response)=>{
+      console.log(response.data)
+      console.log(stdList)  
+    })
   }
 
   return (
@@ -135,6 +173,44 @@ const InsClasses = () => {
             }
           </tbody>
         </table>
+        
+        {show && ( 
+        <div className='modal'>
+          <div className='modal-content'>
+          <span className='close' onClick={()=>{
+            setShow(!show)
+            setSs()
+            }
+            }>&times;</span>
+              <table>
+                <thead>
+                  <tr>
+                    <th>no.</th>
+                    <th>Reg No.</th>
+                    <th>Name</th>
+                    <th>Semester</th>
+                    <th>Opration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stdList && (stdList.map((student,index)=>(
+                    <tr key = {student._id}>
+                      <td>{index+1}</td>
+                      <td>{student._id}</td>
+                      <td>{student.name}</td>
+                      <td>{student.semester}</td>
+                      <td><button onClick={()=>{
+                        newStd(student)
+                      }}>
+                      Remove from Class
+                      </button></td>                                
+                    </tr>
+                  )))}
+                </tbody>
+              </table>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -40,7 +40,6 @@ const Create=() => {
                 <h1>Welcome {admin._id}</h1>
 
                 <div className="StuContainer">
-
                     <a href="/request"  className="Stubutton">
                         Approvals
                     </a>
@@ -68,6 +67,11 @@ const Create=() => {
                 <div className="InsContainer">
                     <a href="/Classes" className="InsButton">
                         Class
+                    </a>
+                </div>
+                <div className="InsContainer">
+                <a href="/session"  className="Stubutton">
+                        Session
                     </a>
                 </div>
                 <div className="InsContainer">

@@ -3,13 +3,14 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import "./ClassStyle/CreateClass.css"
-
+import Spinner from '../components/Spinner'
 
 function CreateClass(){
 
   const [courseID, setCourseID] = useState('');
   const [instructor, setInstructor] = useState();
   const [course, setCourse] = useState([]);
+  const [loading, setLoading] = useState(false)
   const [section, setSection] = useState([]);
   const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
@@ -19,15 +20,18 @@ function CreateClass(){
         token
     }
     function getinst(){
-
+      setLoading(true)
       if(!token){
         alert('You are not logged in')
+      setLoading(false)
+
         window.location.href = ('/')
       }else{
         axios.post(`${backendUrl}/api/token`, data)
         .then((response)=>{
           if(response.data.status === 'ok'){
             setInstructor(response.data.instructor)
+            setLoading(false)
           }
         }).catch((error)=>{
           console.log(error)
@@ -40,17 +44,22 @@ function CreateClass(){
 
   const navigate = useNavigate();
   useEffect(()=>{
+    setLoading(true)
     axios
       .get(`${backendUrl}/courses`)
       .then((response) =>{ 
         setCourse(response.data.course)
+        setLoading(false)
+
       })
       .catch((error)=>{
         console.log(error);
+        setLoading(false)
       })
   }, [instructor])
   const handleSaveClass = () =>{
     event.preventDefault()
+    setLoading(true)
 
 
     const data = {
@@ -62,10 +71,13 @@ function CreateClass(){
     axios
       .post(`${backendUrl}/approvals`, data)
       .then(() =>{
+        setLoading(false)
+
         navigate('/inspage');
       })
       .catch((error)=>{
         alert('An error happend, Please check console')
+        setLoading(false)
         console.log(error);
       });
   }
@@ -73,9 +85,15 @@ function CreateClass(){
   function Exist(c){
     if(instructor)
     return instructor.department == c.depID
+    else
+    return true
   }
   return (
-  <div className='Create-containerStd'>
+    <div className='Create-containerStd'>
+    {loading? <Spinner/>:
+      (
+        <>
+          
     <div className='headerStd'>
       <h1> Create Class</h1>
       <div className='underlineStd'></div>
@@ -91,20 +109,24 @@ function CreateClass(){
             {course.map((course) => (
               Exist(course) ? 
               <option onChange={(e) => setCourseID(e.target.value)} key={course._id} value={course._id}>
-                {course.name}
+                {course._id} - {course.name}
               </option> : null             
               
               ))}
           </select>
         </div>
         <div className='inputStd'>
-        <input className="class-attributes" placeholder='Section' type='number' value={section} onChange={(e) => setSection(e.target.value)}/>
+        <input className="class-attributes" placeholder='Section' min={1} max={5} type='Number'  value={section} onChange={(e) => setSection(e.target.value)}/>
         </div>
       <button className='class-submit' onClick={handleSaveClass}>Save</button>
     </div>
-  </div>
+              
+        </>
+ )
  
-  )
+ }
+  </div>
+ )
 }
 
 export default CreateClass
