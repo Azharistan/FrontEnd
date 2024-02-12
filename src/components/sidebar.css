@@ -62,15 +62,8 @@
 }
 
 .logo {
-  margin-left: 30%;
+  margin-left: 40%;
   position: relative;
   object-fit: contain;
   width: 180px;
-}
-
-@media screen and (max-width: 768px) {
-  .logo {
-      display: none;
-  }
-
 }
