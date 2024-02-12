@@ -166,41 +166,53 @@ const shuffleArray = (array) => {
     
     
     return (
-      <div>
-      {showMarks? (<h1>you have achieved {marks} marks</h1>):(
+      <div className="attempt-container">
+      {showMarks ? (
+        <h1 className="attempt-results">You have achieved {marks} marks</h1>
+      ) : (
         <div>
-        {currentQuestion && (
-          <div>
-            <p>Time remaining: {timer} seconds</p>
-            <label>Question {currentQuestionIndex + 1} : {currentQuestion.statement}</label>
-            {currentQuestion.options.map((opt, index) => (
-              <div key={index}>
-              <input
-                type="radio"
-                id={`option${index}`}
-                name="answer"
-                value={opt}
-                onChange={()=>{
-                    setAns({
-                        questionID : currentQuestion._id,
-                        answer : opt
-                    })
-                }}
-                checked={ans.answer === opt} // Set checked state based on whether the option is selected
-              />
-              <label htmlFor={`option${index}`}>{opt}</label>
-            </div>
-))}
+          {currentQuestion && (
+            <div>
+              <p className="attempt-timer">
+                Time remaining: {timer} seconds
+              </p>
+              <label className="attempt-question">
+                Question {currentQuestionIndex + 1}: {currentQuestion.statement}
+              </label>
+              <div className="attempt-options">
+                {currentQuestion.options.map((opt, index) => (
+                  <div key={index} className="attempt-option">
+                    <input
+                      type="radio"
+                      id={`option${index}`}
+                      name="answer"
+                      value={opt}
+                      onChange={() => {
+                        setAns({
+                          questionID: currentQuestion._id,
+                          answer: opt,
+                        });
+                      }}
+                      checked={ans.answer === opt}
+                    />
+                    <label htmlFor={`option${index}`}>{opt}</label>
+                  </div>
+                ))}
+              </div>
 
-            <button onClick={handleNextQuestion}>Next Question</button>
-          </div>
-        )}
+              <button
+                className="attempt-button"
+                onClick={handleNextQuestion}
+              >
+                Next Question
+              </button>
+            </div>
+          )}
         </div>
       )}
-      </div>
-      
-    );
-  };
+    </div>
+  );
+};
   
   export default AttemptQuiz;
 

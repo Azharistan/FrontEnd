@@ -80,16 +80,11 @@ const EditInstuctor = () => {
       <div className='Edit-UnderlineSTD'></div>
       </div>
       <form className='Edit-InputsSTD'>
-          <label>ID</label>
-          <input className='Edit-Attributes-STD' type='text' value={_id} disabled onChange={(e) => set_id(e.target.value)}/>
-          <label>Name</label>
-          <input className='Edit-Attributes-STD' type='text' value={name} onChange={(e) => setName(e.target.value)}/>
-          <label>Department</label>
-          <input className='Edit-Attributes-STD' type='text' value={department} disabled onChange={(e) => setDepartment(e.target.value)}/>
-          <label>WhatsApp</label>
-          <input className='Edit-Attributes-STD' type='text' value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)}/>
-          <label>Email</label>
-          <input className='Edit-Attributes-STD' type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Prof ID' type='text' value={_id} disabled onChange={(e) => set_id(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Name' type='text' value={name} disabled onChange={(e) => setName(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Department' type='text' value={department} disabled onChange={(e) => setDepartment(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Whatsapp' type='text' value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Email' type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
         
         <button className='Edit-SubmitButton' onClick={handleEditInstuctor}>Save</button>
 

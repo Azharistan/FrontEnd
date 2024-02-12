@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios';
+import { MdErrorOutline } from 'react-icons/md';
 const Quiz = () => {
   const [prof, setProf] = useState()
   const [classes, setClasses] = useState([])
@@ -145,6 +146,21 @@ const Quiz = () => {
       })
     }
   },[quiz])
+
+  const sendMails = () =>{
+    
+    console.log("clicked")
+    axios.get(`${backendUrl}/ShareResult/${quiz}`)
+    .then((response)=>{
+      console.log(response)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
+
+
+
+
   return (
     <div className='STD-Container'>
       <div>
@@ -210,6 +226,10 @@ const Quiz = () => {
                                 <td>{q.marksObtained}</td>                       
                               </tr>
                             )))}
+                        <button onClick={(e)=>{
+                          e.preventDefault()
+                          sendMails();
+                        }}>Share Result</button>
                           </tbody>
                         </table>
                     </div>

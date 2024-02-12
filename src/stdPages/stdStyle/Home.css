@@ -69,8 +69,19 @@ tbody td {
     .table-container th:nth-child(5) {
         display: none;
     }
+    .JoinClass-table-container
+    {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .JoinClass-table-container td:nth-child(3),
+    .JoinClass-table-container th:nth-child(3),
+    .JoinClass-table-container td:nth-child(1),
+    .JoinClass-table-container th:nth-child(1)
+     {
+        display: none;
+    }
 }
-
 
 .Add-Button{
     color: rgb(228, 157, 6);

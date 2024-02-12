@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import BackButton from '../BackButton';
 import Spinner from '../Spinner';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
     const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
     const EditCourse = () => {
+
+      const navigate = useNavigate()
   const [course, setCourse] = useState({
     _id: '',
     name: '',
@@ -88,18 +90,22 @@ import { useParams } from 'react-router-dom';
     });
   };
 
-  const handleEditCourse = () => {
+  const handleEditCourse = (e) => {
+    e.preventDefault()
     setLoading(true);
     console.log(course)
     const topics = {
       name: ()=>{course.topics.filter((topic)=>{topic.name === ""})}
     }
     axios.put(`${backendUrl}/courses/${course._id}`, course)
+    navigate('/courses')
   };
 
   return (
     <div className="Edit-ContainerSTD">
       {loading && <Spinner />}
+      <BackButton/>
+
       <div className='Edit-HeaderSTD'>
       <h1 className='Edit-TextSTD'>Edit Courses</h1>
       <div className='Edit-UnderlineSTD'></div>
@@ -157,7 +163,7 @@ import { useParams } from 'react-router-dom';
         handleAddTopic(e)}}>Add Topic</button>
     </div>
 
-        <button className='Edit-SubmitButton' onClick={handleEditCourse}>Save</button>
+        <button className='Edit-SubmitButton' onClick={(e)=>{handleEditCourse(e)}}>Save</button>
       </form>
     </div>
   );

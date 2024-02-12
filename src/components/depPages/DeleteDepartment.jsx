@@ -28,12 +28,13 @@ const DeleteDepartment = () => {
 
   return (
     <div>
-      <BackButton/>
-      <h1 className='text-3xl my-4'>Delete Department</h1>
-      {loading ? <Spinner/>: ''}
-      <div className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto'>
-        <h3 className='text-2xl'>Are you sure you want to delete this?</h3>
-        <button className='p-4 bg-red-600 text-white m-8 w-full' onClick={handleDeleteDepartment}>Yes, Please</button>
+      {loading ? <Spinner /> : ''}
+      <div className='container delete-container'>
+        <div className='backbutton'>
+              <BackButton/>
+        </div>
+        <h3 className='confirm-text'>Are you sure you want to delete this?</h3>
+        <button className='delete-button' onClick={handleDeleteDepartment}>Yes, Please</button>
       </div>
     </div>
   )

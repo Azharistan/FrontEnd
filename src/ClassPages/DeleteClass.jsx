@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
@@ -9,6 +9,31 @@ const DeleteClass = () => {
     const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {id }=useParams();
+
+  const token = localStorage.getItem('token')
+    const [admin, setAdmin] = useState()
+    const data = {
+        token
+    }
+    useEffect(()=>{
+        console.log('inside use effect')
+        if(!token){
+            alert('You are not logged in')
+            window.location.href = ('/')
+        }else{
+            console.log('here')
+            axios.post(`${backendUrl}/api/token`, data)
+            .then((response)=>{
+                if(response.data.status === 'ok'){
+                    setAdmin(response.data.admin)
+                }
+            }).catch((error)=>{
+                console.log('happy')
+                console.log(error)
+            })
+        }
+    },[])
+
   const handleDeleteClass=()=>{
     setLoading(true);
     axios
@@ -26,6 +51,10 @@ const DeleteClass = () => {
   };
 
   return (
+    <>
+      
+    {admin? (
+
     <div>
       <BackButton/>
       <h1 className='text-3xl my-4'>Delete Class</h1>
@@ -37,6 +66,9 @@ const DeleteClass = () => {
       </div>
       )}
     </div>
+  ):(<h1>You are not allowed here</h1>)}
+  
+  </>
   )
 }
 

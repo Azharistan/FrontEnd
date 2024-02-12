@@ -134,8 +134,8 @@ const CreateQuiz = () => {
           console.log(res.data)
           axios.put(`${backendUrl}/classes/${selectClass._id}`, res.data)
           .then((response)=>{
-            if (response==='ok')
             alert("Quiz Created Succesfully!")
+            window.location.href = ('/inspage')
           })  
         })
       })
@@ -153,9 +153,6 @@ const CreateQuiz = () => {
       topic: topic, subTopic : subTopic})
       .then(async (response)=>{
         await setQuestionList(response.data.question)
-        console.log(arrayDiff(response.data.question, questionStats))
-        console.log(response.data.question)
-        console.log(questionStats)
       })
     }
   },[topic, subTopic])
@@ -178,6 +175,7 @@ const CreateQuiz = () => {
   //     })
   // };
 
+
   return (
     <>
       <table>
@@ -185,9 +183,14 @@ const CreateQuiz = () => {
           <tr>
             <td>
               <div className='class-container'>
+              <div className='question-options'>
                 <button className='button-options' onClick={handleNewQuestionOpen}>New Question</button>
                 <button className='button-options' onClick={handleExistingQuestionOpen}>Existing Question</button>
-
+                <button className='button-options' type='submit' onClick={(e) => {
+                  e.preventDefault();
+                  handleDone();
+                }}>Done</button>
+              </div>
                 {showNewQuestion && (
                   <div className='modal'>
                     <div className='modal-content'>
@@ -343,17 +346,14 @@ const CreateQuiz = () => {
                         
                         <button type='submit' onClick={(e) => {
                           e.preventDefault();
-                          handleSubmit();
-                        }}>Submit</button>
+                          setExistingQuestion(false);
+                        }}>Done</button>
                       </form>
                     </div>
                   </div>
                   
                 )}
-                <button className='button-options' type='submit' onClick={(e) => {
-                  e.preventDefault();
-                  handleDone();
-                }}>Done</button>
+              
               </div>
             </td>
             <td>

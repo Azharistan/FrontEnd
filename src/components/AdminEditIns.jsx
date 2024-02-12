@@ -11,12 +11,14 @@ const AdminEditInstuctor = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState('');
+  const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
+
 
   const navigate = useNavigate();
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true)
-    axios.get(`http://localhost:5000/instructors/${id}`)
+    axios.get(`${backendUrl}/instructors/${id}`)
     .then((response)=>{
       set_id(response.data._id);
       setName(response.data.name)
@@ -31,7 +33,8 @@ const AdminEditInstuctor = () => {
       console.log(error)
     })
   }, []) 
-  const handleEditInstuctor = () =>{
+  const handleEditInstuctor = (e) =>{
+    e.preventDefault()
     console.log("_id",_id )
     console.log("name",name )
     console.log("department",department )
@@ -50,10 +53,10 @@ const AdminEditInstuctor = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5000/instructors/${id}`, data)
+      .put(`${backendUrl}/instructors/${id}`, data)
       .then(() =>{
         setLoading(false);
-        navigate('/HomeIns');
+        navigate('/Instructors');
       })
       .catch((error)=>{
         setLoading(false);
@@ -80,7 +83,9 @@ const AdminEditInstuctor = () => {
  
           <input className='Edit-Attributes-STD' type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
         
-        <button className='Edit-SubmitButton' onClick={handleEditInstuctor}>Save</button>
+        <button className='Edit-SubmitButton' onClick={(e)=>{
+          handleEditInstuctor(e)
+          }}>Save</button>
 
       </form>
     </div>

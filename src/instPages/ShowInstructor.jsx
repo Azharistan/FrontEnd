@@ -26,6 +26,7 @@ const ShowInstuctor = () => {
       }).then((res)=>{
         axios.get(`${backendUrl}/departments/${res.department}`)
         .then((response) => {    
+            console.log(res)
             setDep(response.data.name)
           })
       })

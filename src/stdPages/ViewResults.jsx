@@ -86,7 +86,6 @@ const ViewResults=() => {
           
                 const fetchedAnswers = responses.map((response, index) => {
                   const answerData = response.data;
-                  // Combine answer data with corresponding question data
                   const combinedData = {
                     ...answerData,
                     givenAnswer: questions[index].givenAnswer
@@ -120,7 +119,6 @@ const ViewResults=() => {
           <tr>
             <th>No</th>
             <th>Course Code</th>
-            <th>Course Name</th>
             <th>Date</th>
             <th>Total Marks</th>
             <th>Marks Obtaines</th>
@@ -135,7 +133,6 @@ const ViewResults=() => {
 
                 <td>{index+1}</td>
                 <td>{q.courseID}</td>
-                <td>{q.quizID}</td>
                 <td>{q.date.slice(0,10)}</td>
                 <td>{q.totalMarks}</td>
                 <td>{q.marksObtained}</td>

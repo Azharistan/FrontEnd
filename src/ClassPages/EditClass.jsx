@@ -32,7 +32,8 @@ const EditClass = () => {
       console.log(error)
     })
   }, []) 
-  const handleEditClass = () =>{
+  const handleEditClass = (e) =>{
+    e.preventDefault()
     const data = {
       _id,
       courseID,
@@ -44,7 +45,7 @@ const EditClass = () => {
       .put(`${backendUrl}/classes/${id}`, data)
       .then(() =>{
         setLoading(false);
-        navigate('/HomeClass');
+        navigate('/classes');
       })
       .catch((error)=>{
         setLoading(false);
@@ -56,6 +57,8 @@ const EditClass = () => {
     <div className='Edit-ContainerSTD'>
       {loading ? <Spinner/>: (
         <>
+        <BackButton/>
+
       <div className='Edit-HeaderSTD'>
       <h1 className='Edit-TextSTD'>Edit Class</h1>
       <div className='Edit-UnderlineSTD'></div>
@@ -65,7 +68,7 @@ const EditClass = () => {
           <input className='Edit-Attributes-STD' type='text' value={courseID} onChange={(e) => setCourseID(e.target.value)}/>
           <input className='Edit-Attributes-STD' type='text' value={section} onChange={(e) => setSection(e.target.value)}/>
           <input className='Edit-Attributes-STD' type='text' value={instructor} onChange={(e) => setInstructor(e.target.value)}/>
-        <button className='Edit-SubmitButton' onClick={handleEditClass}>Save</button>
+        <button className='Edit-SubmitButton' onClick={(e)=>{handleEditClass(e)}}>Save</button>
       </form>
       </>
       )}

@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 
 import { AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
@@ -10,8 +11,31 @@ const HomeClass = () => {
   const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   const [detailedClass, setDetails] = useState([])
-  const [classs, setClasss] = useState([])
   const [loading, setLoading] = useState(false)
+
+  const token = localStorage.getItem('token')
+    const [admin, setAdmin] = useState()
+    const data = {
+        token
+    }
+    useEffect(()=>{
+        console.log('inside use effect')
+        if(!token){
+            alert('You are not logged in')
+            window.location.href = ('/')
+        }else{
+            console.log('here')
+            axios.post(`${backendUrl}/api/token`, data)
+            .then((response)=>{
+                if(response.data.status === 'ok'){
+                    setAdmin(response.data.admin)
+                }
+            }).catch((error)=>{
+                console.log('happy')
+                console.log(error)
+            })
+        }
+    },[])
 
   useEffect(()=>{
     setLoading(true)
@@ -58,8 +82,13 @@ const HomeClass = () => {
   }
 
   return (
-    <div className='STD-Container'>
+    <>
+      
+    {admin? (
+
+      <div className='STD-Container'>
       <div>
+        <BackButton/>
         <h1>Class List</h1>
         <div className='STD-underline'></div>
         <Link to='create'>
@@ -115,6 +144,9 @@ const HomeClass = () => {
       )
       }
     </div>
+  ):(<h1>You are not allowed here</h1>)}
+  
+  </>
   )
 }
 

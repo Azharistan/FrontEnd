@@ -12,7 +12,7 @@ const AdminShowInstuctor = () => {
   useEffect(()=>{
     setLoading(true)
     axios
-      .get(`http://localhost:5000/students/${id}`)
+      .get(`${backendUrl}/students/${id}`)
       .then((response)=>{
         setStudents(response.data);
         // console.log('this',response.data)

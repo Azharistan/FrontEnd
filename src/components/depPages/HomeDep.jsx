@@ -1,3 +1,4 @@
+import BackButton from '../BackButton';
 import {useEffect, useState} from 'react'
 import axios from 'axios';
 import Spinner from '../Spinner';
@@ -28,6 +29,7 @@ const HomeDep = () => {
   return (
     <div className='STD-Container'>
       <div>
+        <BackButton/>
         <h1>Department List</h1>
         <div className='STD-underline'></div>
         <Link to='create'>

@@ -53,7 +53,7 @@ const CreateInstructor = () => {
     const data = {
       _id,
       name,
-      whatsapp: `${selectedCountry?.value} ${whatsapp}`, // Updated format with country code
+      whatsapp,
       department,
       email,
       password,

@@ -1,0 +1,50 @@
+.attempt-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .attempt-timer {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .attempt-question {
+    margin-bottom: 20px;
+  }
+  
+  .attempt-options {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .attempt-option {
+    margin-bottom: 10px;
+  }
+  
+  .attempt-button {
+    background-color: rgb(228, 157, 6);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .attempt-button:hover {
+    background-color: rgb(186, 132, 15);
+  }
+  
+  .attempt-results {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #28a745;
+  }
+  

@@ -30,6 +30,7 @@ const ShowStudent = () => {
       <div className='Show-ContainerIns'>
         <h1>Show Student</h1>
         <div className='Show-UnderlineIns'></div>
+        <form className='Show-inputsIns'>
               <p>Reg no:  </p>
               <span>{students._id}</span>
               <p >Name: </p>
@@ -40,6 +41,7 @@ const ShowStudent = () => {
               <span>{students.email}</span>
               <p >Whatsapp: </p>
               <span>{students.whatsapp}</span>
+              </form>
       </div>
   )
 }

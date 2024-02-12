@@ -1,72 +1,69 @@
 .Nav {
-    background: #15171c;
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .SignInLogin{
-    background: #15171c;
-    color: #fff;
-    border: none;
-    margin: 0 20px;
-    font-weight: 300;
-    font-size:medium;
-  }
-  .NavIcon {
-    margin-left: 2rem;
-    font-size: 2rem;
-    height: 80px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  .SidebarNav {
-    background: #15171c;
-    width: 250px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    z-index: 10;
-  }
-  
-  .SidebarWrap {
-    width: 100%;
-  }
-  
-  
-  .Nav .options ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-  }
-  
-  .Nav .options ul li {
-    margin-bottom: 10px;
-  }
-  
-  .Nav .options ul li a {
-    text-decoration: none;
-    color: #fff;
-    margin-right: 10px; 
-  }
-  
-  .Nav .options ul li:last-child a {
-    margin-right: 0; 
-  }
-  
-  .Nav .options ul li button:hover {
-    color: rgb(228, 157, 6);
-  }
+  background: #15171c;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.SignInLogin{
+  background: #15171c;
+  color: #fff;
+  border: none;
+  margin: 0 20px;
+  font-weight: 300;
+  font-size:medium;
+}
+.NavIcon {
+  margin-left: 2rem;
+  font-size: 2rem;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-  .logo {
-    margin-left: 10%;
-    position: relative;
-    object-fit: contain;
-    width: 180px;
-  }
-  
+.SidebarNav {
+  background: #15171c;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.SidebarWrap {
+  width: 100%;
+}
+
+
+.Nav .options ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+
+
+.Nav .options ul li a {
+  text-decoration: none;
+  color: #fff;
+
+}
+
+.Nav .options ul li:last-child a {
+  margin-right: 0; 
+}
+
+.Nav .options ul li button:hover {
+  color: rgb(228, 157, 6);
+}
+
+.logo {
+  margin-left: 40%;
+  position: relative;
+  object-fit: contain;
+  width: 180px;
+}

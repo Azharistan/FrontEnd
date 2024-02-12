@@ -143,7 +143,7 @@ function handleCheck(d){
         <h1>Class List</h1>
         <div className='STD-underline'></div>
       </div>
-        <table className='table-container'>
+        <table className='JoinClass-table-container'>
           <thead className='StdHeadings'>
 
           <tr>

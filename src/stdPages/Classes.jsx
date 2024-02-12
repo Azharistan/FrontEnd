@@ -127,8 +127,10 @@ useEffect(()=>{
   },[class_ID])
 
 function handleCheck(d){
+  if(std){
   const isEnrolled = std.classes.some(cc => cc.classID === d._id  && cc.approved=== true);
   return isEnrolled
+}
 }
 
 // const handleJoin = () => {
@@ -174,8 +176,7 @@ function handleCheck(d){
                 <td>
                   <div>
                     <button onClick={()=>{
-                      localStorage.setItem("class", detailedClass._id)
-                      window.location.href = ("/ViewResults")
+                      window.location.href = (`/ViewResults/${detailedClass.course}`)
                       }}>Results</button>
                   </div>
                 </td>

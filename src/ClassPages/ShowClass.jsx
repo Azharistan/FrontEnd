@@ -45,6 +45,7 @@ const ShowClass = () => {
     return (
       <div className='Show-ContainerIns'>
       {loading? <Spinner/>:(<>
+        <BackButton/>
 
         <h1 >Class Details</h1>
         <div className='Show-UnderlineIns'></div>

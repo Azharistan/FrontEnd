@@ -81,14 +81,14 @@ const EditStudent = () => {
       </div>
       <form className='Edit-InputsSTD'>
 
-          <input className='Edit-Attributes-STD' type='text' value={_id} onChange={(e) => set_id(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='User ID' type='text' value={_id} disabled onChange={(e) => set_id(e.target.value)}/>
 
-          <input className='Edit-Attributes-STD' type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Name' type='text' value={name} disabled onChange={(e) => setName(e.target.value)}/>
 
-          <input className='Edit-Attributes-STD' type='text' value={semester} onChange={(e) => setSemester(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Semester' type='text' value={semester} disabled onChange={(e) => setSemester(e.target.value)}/>
 
-          <input className='Edit-Attributes-STD' type='text' value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)}/>
-          <input className='Edit-Attributes-STD' type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Whatsapp' type='text' value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)}/>
+          <input className='Edit-Attributes-STD' placeholder='Email' type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
         
         <button className='Edit-SubmitButton' onClick={handleEditStudent}>Save</button>
       </form>

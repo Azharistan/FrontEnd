@@ -30,7 +30,8 @@ const EditDepartment = () => {
       console.log(error)
     })
   }, []) 
-  const handleEditDepartment = () =>{
+  const handleEditDepartment = (e) =>{
+    e.preventDefault()
     console.log("_id",_id )
     console.log("name",name )
     console.log("dean",dean )
@@ -48,7 +49,7 @@ const EditDepartment = () => {
       .put(`${backendUrl}/departments/${id}`, data)
       .then(() =>{
         setLoading(false);
-        navigate('/HomeDep');
+        navigate('/departments');
       })
       .catch((error)=>{
         setLoading(false);
@@ -72,7 +73,7 @@ const EditDepartment = () => {
           <input className='Edit-Attributes-STD' type='text' value={dean} onChange={(e) => setDean(e.target.value)}/>
        
           <input className='Edit-Attributes-STD' type='text' value={hod} onChange={(e) => setHOD(e.target.value)}/>
-        <button className='Edit-SubmitButton' onClick={handleEditDepartment}>Save</button>
+        <button className='Edit-SubmitButton' onClick={(e)=>{handleEditDepartment(e)}}>Save</button>
       </form>
     </div>
   )

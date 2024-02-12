@@ -4,8 +4,8 @@ import axios from "axios";
  
 const Create=() => {
     const backendUrl= import.meta.env.VITE_REACT_APP_BACKEND_URL;
-    const [admin, setAdmin] = useState()
     const token = localStorage.getItem('token')
+    const [admin, setAdmin] = useState()
     const data = {
         token
     }

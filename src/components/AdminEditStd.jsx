@@ -19,7 +19,7 @@ const AdminEditStudent = () => {
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true)
-    axios.get(`http://localhost:5000/students/${id}`)
+    axios.get(`${backendUrl}/students/${id}`)
     .then((response)=>{
       set_id(response.data._id);
       setName(response.data.name)
@@ -45,7 +45,7 @@ const AdminEditStudent = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5000/students/${id}`, data)
+      .put(`${backendUrl}/students/${id}`, data)
       .then(() =>{
         setLoading(false);
         navigate('/');
