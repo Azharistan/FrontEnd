@@ -41,9 +41,6 @@ return (
 				{localStorage.getItem('token')? (
 					<>
 						<li><button className="SignInLogin" onClick={()=>{
-							location.href= "/login"
-						}}>Home</button></li>
-						<li><button className="SignInLogin" onClick={()=>{
 							localStorage.removeItem('token')
 							location.href= "/login"
 						}}>Logout</button></li>

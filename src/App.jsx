@@ -115,6 +115,7 @@ function App() {
         <Route exact path="/students/signup" element={<StudentSignUp/>} />
         <Route exact path="/attempt/:id" element={<AttemptQuiz/>} />
         <Route exact path="/ViewResults" element={<ViewResults/>} />
+        <Route exact path="/ViewResults/:id" element={<ViewResults/>} />
         
         <Route exact path="/students/show/:id" element={<AdminShowStudent/>} />
         <Route exact path="/students/edit/:id" element={<AdminEditStudent/>} />
