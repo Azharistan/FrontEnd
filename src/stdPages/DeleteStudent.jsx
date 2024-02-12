@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
@@ -25,9 +25,37 @@ const DeleteStudent = () => {
       });
 
   };
+  const token = localStorage.getItem('token')
+  const [admin, setAdmin] = useState()
+  const data = {
+      token
+  }
+    useEffect(()=>{
+      console.log('inside use effect')
+      if(!token){
+          alert('You are not logged in')
+          window.location.href = ('/')
+      }else{
+          console.log('here')
+          axios.post(`${backendUrl}/api/token`, data)
+          .then((response)=>{
+              if(response.data.status === 'ok'){
+                  setAdmin(response.data.admin)
+              }
+          }).catch((error)=>{
+              console.log('happy')
+              console.log(error)
+          })
+      }
+  },[])
+
 
 
   return (
+    <>
+      
+    {admin? (
+
     <div>
     {loading ? <Spinner /> : ''}
     <div className='container delete-container'>
@@ -40,6 +68,11 @@ const DeleteStudent = () => {
       </button>
     </div>
   </div>
+  )
+  :(<h1>You are not allowed here</h1>)}
+  
+  </>
+
 );
 };
 export default DeleteStudent
