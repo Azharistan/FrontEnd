@@ -62,6 +62,11 @@ const shuffleArray = (array) => {
           .post(`${backendUrl}/quizes/attempt/${id}`,data)
           .then((response) => {
             console.log(response.data.status);
+            if(response.data.status === 'Already attempted')
+            return alert('you have already attempted the Quiz')
+            else 
+            if(response.data.status === 'Sorry Token Expired')
+            return alert('Sorry but the time to attempt Quiz is over.')
             return response.data.data.questions;
           })
           .then((questions) =>
